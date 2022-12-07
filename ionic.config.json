@@ -1,0 +1,7 @@
+{
+  "name": "HookUpReact",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
