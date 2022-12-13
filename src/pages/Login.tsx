@@ -1,12 +1,13 @@
 import './Login.css';
 import React from 'react';
 import { IonButton } from '@ionic/react';
-const Login: React.FC = () => {
+
+const Login = (props: any) => {
   return (
-    <React.Fragment>
+    <div className="container">
       <h2 className="h2">Welcome to the PWA Workshop!</h2>
-      <IonButton shape="round" href="/get-started">Get Started</IonButton>
-    </React.Fragment>
+      <IonButton className="button" shape="round" onClick={(e) => { e.preventDefault(); props.setAuth(true) }} href="/get-started">Get Started</IonButton>
+    </div>
   );
 };
 

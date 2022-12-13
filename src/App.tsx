@@ -9,9 +9,12 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
+import { useState } from 'react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, logoOctocat} from 'ionicons/icons';
 import Login from './pages/Login';
+import Camera from './pages/CreateProfile/Camera';
+import Geo from './pages/CreateProfile/Geo';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -38,31 +41,39 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const isAuthed = true;
+  const [isAuthed, setAuth] = useState(false);
 
-  return <Login />;
+  if (!isAuthed) {
+    return <Login setAuth={setAuth} />
+  }
 
   return (<IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/login">
-              <Login />
-            </Route>
             <Route exact path="/tab1">
               <Tab1 />
             </Route>
             <Route exact path="/tab2">
               <Tab2 />
             </Route>
-            <Route path="/tab3">
+            <Route exact path="/tab3">
               <Tab3 />
+            </Route>
+            <Route exact path="/get-started">
+              <Redirect to="/profile/geo" />
+            </Route>
+            <Route exact path="/profile/camera">
+              <Camera />
+            </Route>
+            <Route exact path="/profile/geo">
+              <Geo />
             </Route>
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
+          <IonTabBar slot="bottom" hidden>
             <IonTabButton tab="tab1" href="/tab1">
               <IonIcon icon={logoOctocat} />
               <IonLabel>Tab 1</IonLabel>
