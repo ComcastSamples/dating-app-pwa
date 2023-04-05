@@ -42,6 +42,10 @@ const Camera: React.FC = () => {
           <button id="startbutton" style={{display: 'none'}}></button>
           <IonButton shape="round" onClick={() => camera.take()}>Take Photo</IonButton>
         </IonItem>
+        <IonItem>
+          <IonLabel>Upload Photo</IonLabel>
+          <input type="file" capture="user" accept="image/*"></input>
+        </IonItem>
         <IonButton shape="round" href="/create-profile">Create Profile</IonButton>
       </IonContent>
     </IonPage>

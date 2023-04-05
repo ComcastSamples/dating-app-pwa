@@ -2,7 +2,8 @@ import './Geo.css';
 import React, { useState } from 'react';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonInput, IonItem, IonLabel,
-  IonSpinner
+  IonSpinner,
+  IonNavLink
 } from '@ionic/react';
 import Geo from './work/geo.js';
 
@@ -48,6 +49,8 @@ const Login: React.FC = () => {
           }}>
             Get Location
         </IonButton>}
+
+        <IonNavLink></IonNavLink>
       </IonContent>
     </IonPage>
   );

@@ -4,3 +4,10 @@
   text-align: center;
   color: white;
 }
+
+#video {
+  /*
+  Don't think this works on the captured photo as MDN suggests
+  filter: grayscale(80%);
+  */
+}

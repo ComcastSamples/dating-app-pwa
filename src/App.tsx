@@ -43,8 +43,8 @@ setupIonicReact();
 const App: React.FC = () => {
   const [isAuthed, setAuth] = useState(false);
 
-  if (!isAuthed) {
-    return <Login setAuth={setAuth} />
+  function renderIfAuthed(children: React.ReactElement) {
+    return isAuthed ? children : <Login setAuth={setAuth} />
   }
 
   return (<IonApp>
@@ -60,17 +60,14 @@ const App: React.FC = () => {
             <Route exact path="/tab3">
               <Tab3 />
             </Route>
-            <Route exact path="/get-started">
-              <Redirect to="/profile/geo" />
+            <Route exact path="/profile/geo">
+              {renderIfAuthed(<Geo />)}
             </Route>
             <Route exact path="/profile/camera">
-              <Camera />
-            </Route>
-            <Route exact path="/profile/geo">
-              <Geo />
+              {renderIfAuthed(<Camera />)}
             </Route>
             <Route exact path="/">
-              <Redirect to="/login" />
+              <Redirect to="/profile/geo" />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom" hidden>
