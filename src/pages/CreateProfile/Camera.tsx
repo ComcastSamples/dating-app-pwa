@@ -1,8 +1,9 @@
-import './Camera.css';
+import styles from './profile.module.css';
 import React, { useEffect } from 'react';
 import camera from './work/camera.js';
+import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
+  IonToolbar, IonTitle, IonButtons, IonBackButton  } from '@ionic/react';
 
 function upload(): Promise<void> {
   return new Promise<void>(async (resolve, reject) => {
@@ -21,30 +22,42 @@ function upload(): Promise<void> {
 }
 
 const Camera: React.FC = () => {
-  useEffect(() => {camera.start() });
+  useEffect(() => { camera.start(); }, []);
+  let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
+
+  let takePhoto = () => {
+    setPhoto(camera.take())
+  }
+
+  let clearPhoto = () => {
+    setPhoto('');
+  }
 
   return (
-    <IonPage>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle>Live Photos</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonItem>
-          <video id="video"></video>
-          <canvas id="canvas" style={{ display: 'none' }}></canvas>
-        </IonItem>
-        <IonItem>
-          <img id="photo" />
-        </IonItem>
-        <IonItem>
-          <button id="startbutton" style={{display: 'none'}}></button>
-          <IonButton shape="round" onClick={() => camera.take()}>Take Photo</IonButton>
-        </IonItem>
-        <IonButton shape="round" href="/create-profile">Create Profile</IonButton>
+    <>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton></IonBackButton>
+          </IonButtons>
+          <IonTitle>Live Photos</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent class="ion-padding">
+        <div className={styles.imgContainer}>
+          <video id="video" className={styles.video}
+            style={photo ? {display: 'none'} : {}}></video>
+          <canvas id="canvas" className={styles.canvas}></canvas>
+          <img id="photo" src={photo} className={styles.photo} />
+        </div>
+        <div className='ion-text-center'>
+          {photo ?
+            <IonButton shape="round" onClick={clearPhoto}>Clear Photo</IonButton>
+            : <IonButton shape="round" onClick={takePhoto}>Take Photo</IonButton>}
+          <IonButton shape="round" href="/profile/upload">Save Photo</IonButton>
+        </div>
       </IonContent>
-    </IonPage>
+    </>
   );
 };
 

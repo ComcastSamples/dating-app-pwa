@@ -1,5 +1,4 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Taking_still_photos
-
+// https://web.dev/media-recording-audio/
 
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -61,6 +60,8 @@
       },
       false
     );
+
+    clear();
   }
 
   // Fill the photo with an indication that none has been

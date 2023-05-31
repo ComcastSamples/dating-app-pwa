@@ -1,7 +1,6 @@
-import styles from './Camera.module.css';
-import React from 'react';
+import './Camera.module.css';
+import React, { useEffect } from 'react';
 import camera from './work/camera.js';
-import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
 
@@ -21,18 +20,24 @@ function upload(): Promise<void> {
   });
 }
 
-const UploadPhotos: React.FC = () => {
-  let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
+const Camera: React.FC = () => {
+  useEffect(() => {camera.start() });
 
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonHeader>
+        <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle>Upload Photos</IonTitle>
+            <IonTitle>Live Photos</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <img id="photo" src={photo} className={styles.photo} />
+        <IonItem>
+          <video id="video"></video>
+          <canvas id="canvas" style={{ display: 'none' }}></canvas>
+        </IonItem>
+        <IonItem>
+          <img id="photo" />
+        </IonItem>
         <IonItem>
           <button id="startbutton" style={{display: 'none'}}></button>
           <IonButton shape="round" onClick={() => camera.take()}>Take Photo</IonButton>
@@ -47,4 +52,4 @@ const UploadPhotos: React.FC = () => {
   );
 };
 
-export default UploadPhotos;
+export default Camera;

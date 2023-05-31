@@ -1,0 +1,31 @@
+.button {
+  margin: 40px;
+}
+
+.spinner {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 20px auto;
+}
+
+.h2 {
+  margin-top: 124px;
+  font-size: 48px;
+  text-align: center;
+  color: white;
+}
+
+.imgContainer {
+  display: grid;
+}
+
+.canvas {
+  display: none;
+}
+
+.video, .photo {
+  grid-column: 1;
+  grid-row: 1;
+}
+

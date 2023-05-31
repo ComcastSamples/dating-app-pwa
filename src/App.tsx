@@ -7,14 +7,15 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonNav,
   setupIonicReact
 } from '@ionic/react';
 import { useState } from 'react';
+import useLocalStorageState from 'use-local-storage-state';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, logoOctocat} from 'ionicons/icons';
 import Login from './pages/Login';
-import Camera from './pages/CreateProfile/Camera';
-import Geo from './pages/CreateProfile/Geo';
+import CreateProfile from './pages/CreateProfile';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -41,10 +42,19 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [isAuthed, setAuth] = useState(false);
+  const [authed, setAuth] = useLocalStorageState('authed', { defaultValue: false});
+  const [profileIncomplete, setProfileComplete] = useState(true);
 
-  function renderIfAuthed(children: React.ReactElement) {
-    return isAuthed ? children : <Login setAuth={setAuth} />
+  if (!authed) {
+    return <IonApp>
+        <Login setAuth={setAuth} />
+      </IonApp>
+  }
+
+  if (profileIncomplete) {
+    return <IonApp>
+          <IonNav root={() => <CreateProfile />} />
+        </IonApp>
   }
 
   return (<IonApp>
@@ -59,15 +69,6 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/tab3">
               <Tab3 />
-            </Route>
-            <Route exact path="/profile/geo">
-              {renderIfAuthed(<Geo />)}
-            </Route>
-            <Route exact path="/profile/camera">
-              {renderIfAuthed(<Camera />)}
-            </Route>
-            <Route exact path="/">
-              <Redirect to="/profile/geo" />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom" hidden>

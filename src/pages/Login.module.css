@@ -1,0 +1,17 @@
+.content {
+  --ion-background-color: transparent;
+  text-align: center;
+}
+
+.header {
+  margin-top: 124px;
+  margin-bottom: 12px;
+  font-size: 48px;
+  color: white;
+}
+
+.tagline {
+  margin-top: 0;
+  font-size: 28px;
+  color: white;
+}
