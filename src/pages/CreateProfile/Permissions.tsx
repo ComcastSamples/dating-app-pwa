@@ -1,39 +1,62 @@
-import styles from './Geo.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonHeader, IonButton, IonContent, IonButtons,
-  IonToolbar, IonTitle, IonItem, IonSpinner, IonNavLink,
-  IonBackButton
+  IonToolbar, IonTitle, IonBackButton, IonPage
 } from '@ionic/react';
-import Geo from './Geo';
+
+function checkPermission(name:PermissionName) {
+  return navigator.permissions.query({name});
+}
 
 const Permissions: React.FC = () => {
-  let [location, setLocation] = useLocalStorageState('location', { defaultValue: ''});
-  let [loading, setLoading] = useState(false);
+  let [cameraStatus, setCameraStatus] = useState('');
+  let [geoStatus, setGeoStatus] = useState('');
+  let [microphoneStatus, setMicrophoneStatus] = useState('');
+
+  useEffect(() => {
+    navigator.permissions.query({name: 'camera' as PermissionName}).then(permission => {
+      setCameraStatus(permission.state);
+    });
+
+    navigator.permissions.query({name: 'geolocation'}).then(permission => {
+      setGeoStatus(permission.state);
+    });
+
+    navigator.permissions.query({name: 'microphone' as PermissionName}).then(permission => {
+      setMicrophoneStatus(permission.state);
+    });
+  }, [])
 
   return (
-    <>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton></IonBackButton>
           </IonButtons>
-          <IonTitle>Cats need permission</IonTitle>
+          <IonTitle>When it comes to cats, permission is just a purr-mission!</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding">
-        <h1>Permissions API</h1>
-          <p>
-            Starting off simple with Name and Location using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API">Geolocation API</a>
-            <br />
-            You'll do your work in the 'work/geo.js' file.
-          </p>
+        <h1>Getting access with Permissions API</h1>
+        <ul>
+          <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" target="_blank">Chrome Permissions Blog</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API" target="_blank">MDN Permissions</a></li>
+        </ul>
 
-          <IonNavLink routerDirection="forward" component={() => <Geo />}>
-            <IonButton>Move on to GeoLocation</IonButton>
-          </IonNavLink>
+        <p>
+          We need to get permission to use "camera", "geolocation", and "microphone".
+        </p>
+
+        <ul>
+          <li>Camera: {cameraStatus}</li>
+          <li>Geolocation: {geoStatus}</li>
+          <li>Microphone: {microphoneStatus}</li>
+        </ul>
+
+        <IonButton routerLink="/profile/geo" routerDirection="forward">Move on to GeoLocation</IonButton>
       </IonContent>
-    </>
+    </IonPage>
   );
 };
 

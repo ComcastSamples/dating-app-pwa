@@ -1,9 +1,7 @@
 import React from 'react';
-import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonItem, IonNavLink
+  IonToolbar, IonTitle
 } from '@ionic/react';
-import Permissions from './Permissions';
 
 const Welcome: React.FC = () => {
   return (
@@ -20,9 +18,7 @@ const Welcome: React.FC = () => {
         <p>
           Today we're going to be covering a lot of material.
         </p>
-        <IonNavLink routerDirection="forward" component={() => <Permissions />}>
-          <IonButton>Get started with Permissions</IonButton>
-        </IonNavLink>
+          <IonButton routerLink="/profile/permissions" routerDirection="forward">Get started with Permissions</IonButton>
       </IonContent>
     </IonPage>
   );

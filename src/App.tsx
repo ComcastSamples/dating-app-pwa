@@ -7,7 +7,6 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonNav,
   setupIonicReact
 } from '@ionic/react';
 import { useState } from 'react';
@@ -15,7 +14,12 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, logoOctocat} from 'ionicons/icons';
 import Login from './pages/Login';
-import CreateProfile from './pages/CreateProfile';
+import Welcome from './pages/CreateProfile/';
+import Permissions from './pages/CreateProfile/Permissions';
+import Camera from './pages/CreateProfile/Camera';
+import UploadPhotos from './pages/CreateProfile/UploadPhotos';
+import VoiceRecording from './pages/CreateProfile/VoiceRecording';
+import Geo from './pages/CreateProfile/Geo';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -43,7 +47,7 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const [authed, setAuth] = useLocalStorageState('authed', { defaultValue: false});
-  const [profileIncomplete, setProfileComplete] = useState(true);
+  const [profileIncomplete, setProfileComplete] = useState(false);
 
   if (!authed) {
     return <IonApp>
@@ -53,7 +57,30 @@ const App: React.FC = () => {
 
   if (profileIncomplete) {
     return <IonApp>
-          <IonNav root={() => <CreateProfile />} />
+            <IonReactRouter>
+              <IonRouterOutlet>
+                <Route exact path="/profile/">
+                  <Welcome />
+                </Route>
+                <Route exact path="/profile/permissions">
+                  <Permissions />
+                </Route>
+                <Route exact path="/profile/geo">
+                  <Geo />
+                </Route>
+                <Route exact path="/profile/camera">
+                  <Camera />
+                </Route>
+                <Route exact path="/profile/upload">
+                  <UploadPhotos />
+                </Route>
+                <Route exact path="/profile/voicerecording">
+                  <VoiceRecording />
+                </Route>
+                <Redirect exact from="/" to="/profile/"></Redirect>
+                <Route render={() => <Redirect to="/profile/" />} />
+              </IonRouterOutlet>
+          </IonReactRouter>
         </IonApp>
   }
 

@@ -1,4 +1,4 @@
-import styles from './Camera.module.css';
+import styles from './profile.module.css';
 import React from 'react';
 import camera from './work/camera.js';
 import useLocalStorageState from 'use-local-storage-state';

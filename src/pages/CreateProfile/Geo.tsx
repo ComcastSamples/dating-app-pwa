@@ -3,11 +3,27 @@ import React, { useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonInput, IonItem, IonLabel,
-  IonSpinner,
+  IonSpinner, IonPage,
   IonNavLink, IonButtons, IonBackButton
 } from '@ionic/react';
 import Camera from './Camera';
-import Geo from './work/geo.js';
+
+function getLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject('Geolocation is not supported by your browser');
+    } else {
+      navigator.geolocation.getCurrentPosition((g => {
+        resolve(convertToLocation(g.coords.latitude, g.coords.longitude));
+      }), reject);
+    }
+  });
+}
+
+function convertToLocation(lat:number, lon:number) {
+  return fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+    .then(r => r.json());
+}
 
 const Login: React.FC = () => {
   let [location, setLocation] = useLocalStorageState('location', { defaultValue: ''});
@@ -21,9 +37,7 @@ const Login: React.FC = () => {
     if (location) {
       return <>
         <IonItem>{location}</IonItem>
-        <IonNavLink routerDirection="forward" component={() => <Camera />}>
-            <IonButton>Move on to Camera</IonButton>
-          </IonNavLink>
+        <IonButton routerLink="/profile/camera" routerDirection="forward">Move on to Camera</IonButton>
       </>
     }
 
@@ -31,9 +45,8 @@ const Login: React.FC = () => {
       onClick={(e) => {
         e.preventDefault();
         setLoading(true);
-        Geo.getLocation().then(
+        getLocation().then(
           (location: any) => {
-            console.log(location);
             let {address} = location;
             setLocation(`${address.city}, ${address.state}`);
             setLoading(false);
@@ -44,28 +57,30 @@ const Login: React.FC = () => {
   }
 
   return (
-    <>
+    <IonPage>
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
               <IonBackButton></IonBackButton>
             </IonButtons>
-            <IonTitle>Herding Cats in your Area</IonTitle>
+            <IonTitle>Looking for cats in your area?</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent class="ion-padding">
+          <h1>Using Geolocation</h1>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" target="_blank">Chrome Permissions Blog</a></li>
+          </ul>
           <p>
-            Starting off simple with Name and Location using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API">Geolocation API</a>
-            <br />
-            You'll do your work in the 'work/geo.js' file.
+            Just follow the purrs and whiskers, and you'll be feline fine in no time!
           </p>
           <IonItem>
-            <IonLabel>Your Name</IonLabel>
+            <IonLabel>Your Display Name</IonLabel>
             <IonInput label="Name" placeholder="Name"></IonInput>
           </IonItem>
           {showAddress()}
       </IonContent>
-    </>
+    </IonPage>
   );
 };
 

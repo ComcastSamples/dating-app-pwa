@@ -34,13 +34,13 @@ const Camera: React.FC = () => {
   }
 
   return (
-    <>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton></IonBackButton>
           </IonButtons>
-          <IonTitle>Live Photos</IonTitle>
+          <IonTitle>Get ready to capture the cattitude</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding">
@@ -57,7 +57,7 @@ const Camera: React.FC = () => {
           <IonButton shape="round" href="/profile/upload">Save Photo</IonButton>
         </div>
       </IonContent>
-    </>
+    </IonPage>
   );
 };
 
