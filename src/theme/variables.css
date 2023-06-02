@@ -81,8 +81,7 @@ http://ionicframework.com/docs/theming/ */
 }
 
 ion-content::part(background) {
-  background: fixed url("../images/finge-logo.png") center bottom -160px no-repeat;
-  opacity: 0.2;
+  background: fixed #fff url("../images/finge-bg.png") center bottom -160px no-repeat;
 }
 
 @media (prefers-color-scheme: dark) {
