@@ -1,5 +1,5 @@
 {
-  "name": "DatingAppPWA",
+  "name": "dating-app-pwa",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -22,7 +22,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
-    "typescript": "^5.0.0",
+    "typescript": "^4.9.5",
     "use-local-storage-state": "^18.3.3",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
@@ -40,6 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "eject": "react-scripts eject"
@@ -62,5 +63,8 @@
       "last 1 safari version"
     ]
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
 }
