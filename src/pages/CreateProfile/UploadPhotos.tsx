@@ -1,47 +1,40 @@
 import styles from './profile.module.css';
-import React from 'react';
-import camera from './work/camera.js';
+import React, { useRef, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
 
-function upload(): Promise<void> {
-  return new Promise<void>(async (resolve, reject) => {
-      const filePicker = document.querySelector('input');
-
-      if (!filePicker || !filePicker.files
-          || filePicker.files.length <= 0) {
-          reject('No file selected.');
-          return;
-      }
-      const myFile = filePicker.files[0];
-      console.log(myFile);
-
-      resolve();
-  });
-}
-
 const UploadPhotos: React.FC = () => {
-  let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
+  let [photos, setPhotos] = useLocalStorageState('photos', { defaultValue: []});
+  let input = useRef(null);
+
+  useEffect(() => {
+    input.current.onchange = evt => {
+      const [file] = input.current.files
+      if (file) {
+        setPhotos(photos.concat(URL.createObjectURL(file)))
+      }
+    }
+  })
+
+  const photoMarkup = photos.map((photo, index) => <img className={styles.photoThumb} src={photo} key={index} />);
 
   return (
     <IonPage>
       <IonContent fullscreen>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Upload Photos</IonTitle>
+            <IonTitle>Meowtastic moments</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <img id="photo" src={photo} className={styles.photo} />
-        <IonItem>
-          <button id="startbutton" style={{display: 'none'}}></button>
-          <IonButton shape="round" onClick={() => camera.take()}>Take Photo</IonButton>
-        </IonItem>
         <IonItem>
           <IonLabel>Upload Photo</IonLabel>
-          <input type="file" capture="user" accept="image/*"></input>
+          <input type="file" capture="user" accept="image/*" multiple ref={input}></input>
         </IonItem>
-        <IonButton shape="round" href="/create-profile">Create Profile</IonButton>
+        <div className={styles.photoContainer}>
+          {photoMarkup}
+        </div>
+        <IonButton href="/create-profile">Create Profile</IonButton>
       </IonContent>
     </IonPage>
   );

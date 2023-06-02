@@ -54,8 +54,8 @@ const Camera: React.FC = () => {
           {photo ?
             <IonButton shape="round" onClick={clearPhoto}>Clear Photo</IonButton>
             : <IonButton shape="round" onClick={takePhoto}>Take Photo</IonButton>}
-          <IonButton shape="round" href="/profile/upload">Save Photo</IonButton>
         </div>
+        <IonButton href="/profile/upload">Move on to Uploading</IonButton>
       </IonContent>
     </IonPage>
   );

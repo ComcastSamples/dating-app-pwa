@@ -16,8 +16,17 @@ const Welcome: React.FC = () => {
           Welcome to the workshop.
         </h1>
         <p>
-          Today we're going to be covering a lot of material.
+          We're going to create a Dating App for Cats using the latest web technologies. Below are links to the pages and their topic. Each page will contain instructions with links to documentation. Edit the
+          page with the corresponding name to do the work.
         </p>
+        <ol>
+          <li><a href="/profile/permissions">Permissions</a></li>
+          <li><a href="/profile/geo">Geolocation</a></li>
+          <li><a href="/profile/camera">Camera</a></li>
+          <li><a href="/profile/upload">Upload Photos</a></li>
+          <li><a href="/profile/voicerecording">Voice Recording</a></li>
+        </ol>
+
           <IonButton routerLink="/profile/permissions" routerDirection="forward">Get started with Permissions</IonButton>
       </IonContent>
     </IonPage>

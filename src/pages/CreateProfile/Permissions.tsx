@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
 import { IonHeader, IonButton, IonContent, IonButtons,
   IonToolbar, IonTitle, IonBackButton, IonPage
 } from '@ionic/react';
-
-function checkPermission(name:PermissionName) {
-  return navigator.permissions.query({name});
-}
 
 const Permissions: React.FC = () => {
   let [cameraStatus, setCameraStatus] = useState('');
@@ -34,7 +29,7 @@ const Permissions: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton></IonBackButton>
           </IonButtons>
-          <IonTitle>When it comes to cats, permission is just a purr-mission!</IonTitle>
+          <IonTitle>Asking Purr-mission!</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding">
@@ -45,7 +40,8 @@ const Permissions: React.FC = () => {
         </ul>
 
         <p>
-          We need to get permission to use "camera", "geolocation", and "microphone".
+          We need to get permission to use "camera", "geolocation", and "microphone". Read up on the docs
+          and then set the corresponding states then move on.
         </p>
 
         <ul>

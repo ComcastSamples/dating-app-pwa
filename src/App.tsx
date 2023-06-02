@@ -47,7 +47,7 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const [authed, setAuth] = useLocalStorageState('authed', { defaultValue: false});
-  const [profileIncomplete, setProfileComplete] = useState(false);
+  const [profileComplete, setProfileComplete] = useState(false);
 
   if (!authed) {
     return <IonApp>
@@ -55,7 +55,7 @@ const App: React.FC = () => {
       </IonApp>
   }
 
-  if (profileIncomplete) {
+  if (!profileComplete) {
     return <IonApp>
             <IonReactRouter>
               <IonRouterOutlet>

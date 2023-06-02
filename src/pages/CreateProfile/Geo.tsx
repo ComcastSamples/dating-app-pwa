@@ -72,11 +72,12 @@ const Login: React.FC = () => {
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" target="_blank">Chrome Permissions Blog</a></li>
           </ul>
           <p>
-            Just follow the purrs and whiskers, and you'll be feline fine in no time!
+            Geolocation will give the latitude and logitude of the user. Use the convertToLocation
+            function to display city and state in setLocation. Also enter your name for the profile.
           </p>
           <IonItem>
             <IonLabel>Your Display Name</IonLabel>
-            <IonInput label="Name" placeholder="Name"></IonInput>
+            <IonInput label="Name" placeholder="Your Name"></IonInput>
           </IonItem>
           {showAddress()}
       </IonContent>
