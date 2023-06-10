@@ -1,10 +1,11 @@
 import styles from './profile.module.css';
-import React, { useEffect, useState } from 'react';
-import camera from './work/camera.js';
+import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonItem, IonLabel,
+  IonToolbar, IonTitle,
 IonButtons, IonBackButton } from '@ionic/react';
+
+// https://web.dev/patterns/media/microphone-record/
 
 const VoiceRecording: React.FC = () => {
   let [recording, setRecording] = useLocalStorageState('recording', { defaultValue: ''});

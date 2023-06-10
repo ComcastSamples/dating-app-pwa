@@ -35,8 +35,8 @@ const Permissions: React.FC = () => {
       <IonContent class="ion-padding">
         <h1>Getting access with Permissions API</h1>
         <ul>
-          <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" target="_blank">Chrome Permissions Blog</a></li>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API" target="_blank">MDN Permissions</a></li>
+          <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API" rel="noreferrer" target="_blank">MDN Permissions</a></li>
         </ul>
 
         <p>

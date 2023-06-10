@@ -4,9 +4,8 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonInput, IonItem, IonLabel,
   IonSpinner, IonPage,
-  IonNavLink, IonButtons, IonBackButton
+  IonButtons, IonBackButton
 } from '@ionic/react';
-import Camera from './Camera';
 
 function getLocation() {
   return new Promise((resolve, reject) => {
@@ -69,7 +68,7 @@ const Login: React.FC = () => {
         <IonContent class="ion-padding">
           <h1>Using Geolocation</h1>
           <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" target="_blank">Chrome Permissions Blog</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
           </ul>
           <p>
             Geolocation will give the latitude and logitude of the user. Use the convertToLocation

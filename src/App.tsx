@@ -14,7 +14,8 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, logoOctocat} from 'ionicons/icons';
 import Login from './pages/Login';
-import Welcome from './pages/CreateProfile/';
+import ManifestWelcome from './pages/Manifest/';
+import ProfileWelcome from './pages/CreateProfile/';
 import Permissions from './pages/CreateProfile/Permissions';
 import Camera from './pages/CreateProfile/Camera';
 import UploadPhotos from './pages/CreateProfile/UploadPhotos';
@@ -59,8 +60,11 @@ const App: React.FC = () => {
     return <IonApp>
             <IonReactRouter>
               <IonRouterOutlet>
+                <Route exact path="/manifest/">
+                  <ManifestWelcome />
+                </Route>
                 <Route exact path="/profile/">
-                  <Welcome />
+                  <ProfileWelcome />
                 </Route>
                 <Route exact path="/profile/permissions">
                   <Permissions />
@@ -77,7 +81,13 @@ const App: React.FC = () => {
                 <Route exact path="/profile/voicerecording">
                   <VoiceRecording />
                 </Route>
-                <Redirect exact from="/" to="/profile/"></Redirect>
+                <Route exact path="/profile/complete"
+                  render={() => {
+                    setProfileComplete(true);
+                    return <Redirect to="/" />}
+                  }>
+                </Route>
+                <Redirect exact from="/" to="/manifest/"></Redirect>
                 <Route render={() => <Redirect to="/profile/" />} />
               </IonRouterOutlet>
           </IonReactRouter>

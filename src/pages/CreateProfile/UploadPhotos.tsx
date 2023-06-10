@@ -4,6 +4,8 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
 
+
+
 const UploadPhotos: React.FC = () => {
   let [photos, setPhotos] = useLocalStorageState('photos', { defaultValue: []});
   let input = useRef(null);
@@ -12,12 +14,16 @@ const UploadPhotos: React.FC = () => {
     input.current.onchange = evt => {
       const [file] = input.current.files
       if (file) {
-        setPhotos(photos.concat(URL.createObjectURL(file)))
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setPhotos(photos.concat(e.target.result))
+        };
+        reader.readAsDataURL(file);
       }
     }
   })
 
-  const photoMarkup = photos.map((photo, index) => <img className={styles.photoThumb} src={photo} key={index} />);
+  const photoMarkup = photos.map((photo, index) => <img alt="your uploaded pics" className={styles.photoThumb} src={photo} key={index} />);
 
   return (
     <IonPage>

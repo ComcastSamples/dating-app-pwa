@@ -9,12 +9,15 @@ const Login = (props: any) => {
       </video>
       <h2 className={styles.header}>Finge</h2>
       <p className={styles.tagline}>Dating for felines</p>
+
       <IonButton
         className="button"
         shape="round"
-        onClick={(e) => { e.preventDefault(); props.setAuth(true) }} href="/get-started">
+        onClick={(e) => { e.preventDefault(); props.setAuth(true) }}>
           Get Started
       </IonButton>
+
+      <p className={styles.subtagline}>A Progressive Web App workshop teaching you about the best the web has to offer as an alternative to native apps.</p>
     </IonContent>
   );
 };

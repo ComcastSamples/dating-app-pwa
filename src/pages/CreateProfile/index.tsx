@@ -13,7 +13,7 @@ const Welcome: React.FC = () => {
       </IonHeader>
       <IonContent class="ion-padding">
         <h1>
-          Welcome to the workshop.
+          Profile Creation Overview
         </h1>
         <p>
           We're going to create a Dating App for Cats using the latest web technologies. Below are links to the pages and their topic. Each page will contain instructions with links to documentation. Edit the

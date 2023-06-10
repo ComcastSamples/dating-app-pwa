@@ -5,22 +5,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonButtons, IonBackButton  } from '@ionic/react';
 
-function upload(): Promise<void> {
-  return new Promise<void>(async (resolve, reject) => {
-      const filePicker = document.querySelector('input');
-
-      if (!filePicker || !filePicker.files
-          || filePicker.files.length <= 0) {
-          reject('No file selected.');
-          return;
-      }
-      const myFile = filePicker.files[0];
-      console.log(myFile);
-
-      resolve();
-  });
-}
-
+// https://web.dev/media-capturing-images/
 const Camera: React.FC = () => {
   useEffect(() => { camera.start(); }, []);
   let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
@@ -48,7 +33,7 @@ const Camera: React.FC = () => {
           <video id="video" className={styles.video}
             style={photo ? {display: 'none'} : {}}></video>
           <canvas id="canvas" className={styles.canvas}></canvas>
-          <img id="photo" src={photo} className={styles.photo} />
+          <img alt="from your camera" id="photo" src={photo} className={styles.photo} />
         </div>
         <div className='ion-text-center'>
           {photo ?
