@@ -3,11 +3,18 @@ import React, { useEffect } from 'react';
 import camera from './work/camera.js';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonButtons, IonBackButton  } from '@ionic/react';
+  IonToolbar, IonTitle, IonButtons, IonMenuButton  } from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 // https://web.dev/media-capturing-images/
+// http://christianheilmann.com/2013/07/19/flipping-the-image-when-accessing-the-laptop-camera-with-getusermedia/
 const Camera: React.FC = () => {
-  useEffect(() => { camera.start(); }, []);
+  useEffect(() => { camera.start();
+    return () => {
+      camera.stop();
+    }
+  }, []);
   let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
 
   let takePhoto = () => {
@@ -23,12 +30,13 @@ const Camera: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton></IonBackButton>
+            <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Get ready to capture the cattitude</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding">
+      <Menu></Menu>
+      <IonContent class="ion-padding" id="main-content">
         <div className={styles.imgContainer}>
           <video id="video" className={styles.video}
             style={photo ? {display: 'none'} : {}}></video>
@@ -40,8 +48,9 @@ const Camera: React.FC = () => {
             <IonButton shape="round" onClick={clearPhoto}>Clear Photo</IonButton>
             : <IonButton shape="round" onClick={takePhoto}>Take Photo</IonButton>}
         </div>
-        <IonButton href="/profile/upload">Move on to Uploading</IonButton>
       </IonContent>
+
+      <Footer prev='/profile/geo' next='/profile/upload'></Footer>
     </IonPage>
   );
 };

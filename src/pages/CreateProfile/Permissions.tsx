@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { IonHeader, IonButton, IonContent, IonButtons,
-  IonToolbar, IonTitle, IonBackButton, IonPage
+import { IonHeader, IonContent, IonButtons,
+  IonToolbar, IonTitle, IonPage, IonMenuButton
 } from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 const Permissions: React.FC = () => {
   let [cameraStatus, setCameraStatus] = useState('');
@@ -27,12 +29,13 @@ const Permissions: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton></IonBackButton>
+            <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Asking Purr-mission!</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding">
+      <Menu></Menu>
+      <IonContent class="ion-padding" id="main-content">
         <h1>Getting access with Permissions API</h1>
         <ul>
           <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
@@ -49,9 +52,8 @@ const Permissions: React.FC = () => {
           <li>Geolocation: {geoStatus}</li>
           <li>Microphone: {microphoneStatus}</li>
         </ul>
-
-        <IonButton routerLink="/profile/geo" routerDirection="forward">Move on to GeoLocation</IonButton>
       </IonContent>
+      <Footer prev='/manifest/' next='/profile/geo'></Footer>
     </IonPage>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { cloudOffline, cloudDone } from 'ionicons/icons';
-import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonIcon
+import { IonPage, IonHeader, IonContent,
+  IonToolbar, IonTitle, IonIcon, IonMenuButton, IonButtons
 } from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 const ManifestWelcome: React.FC = () => {
   const [online, setOnline] = useState(navigator.onLine);
@@ -16,10 +18,14 @@ const ManifestWelcome: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton></IonMenuButton>
+          </IonButtons>
           <IonTitle>Make PWA Installable</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding">
+      <Menu></Menu>
+      <IonContent class="ion-padding" id="main-content">
         <h1>
           Manifest
         </h1>
@@ -46,8 +52,8 @@ const ManifestWelcome: React.FC = () => {
         <p>
           For service workers we just need to respond to the fetch request, so we can return files when we're offline. Edit service-worker.js in public folder to handle fetch requests. Check to make sure it works by reloading and toggling offline mode.
         </p>
-          <IonButton routerLink="/profile/" routerDirection="forward">Get started with Profiles</IonButton>
       </IonContent>
+      <Footer prev='' next='/profile/permissions'></Footer>
     </IonPage>
   );
 };

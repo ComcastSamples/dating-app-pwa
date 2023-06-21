@@ -15,12 +15,12 @@ import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, logoOctocat} from 'ionicons/icons';
 import Login from './pages/Login';
 import ManifestWelcome from './pages/Manifest/';
-import ProfileWelcome from './pages/CreateProfile/';
 import Permissions from './pages/CreateProfile/Permissions';
 import Camera from './pages/CreateProfile/Camera';
 import UploadPhotos from './pages/CreateProfile/UploadPhotos';
 import VoiceRecording from './pages/CreateProfile/VoiceRecording';
 import Geo from './pages/CreateProfile/Geo';
+import Notifications from './pages/CreateProfile/Notifications';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -48,7 +48,7 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const [authed, setAuth] = useLocalStorageState('authed', { defaultValue: false});
-  const [profileComplete, setProfileComplete] = useState(false);
+  const [profileComplete, setProfileComplete] = useLocalStorageState('profileComplete', { defaultValue: false});
 
   if (!authed) {
     return <IonApp>
@@ -62,9 +62,6 @@ const App: React.FC = () => {
               <IonRouterOutlet>
                 <Route exact path="/manifest/">
                   <ManifestWelcome />
-                </Route>
-                <Route exact path="/profile/">
-                  <ProfileWelcome />
                 </Route>
                 <Route exact path="/profile/permissions">
                   <Permissions />
@@ -81,6 +78,9 @@ const App: React.FC = () => {
                 <Route exact path="/profile/voicerecording">
                   <VoiceRecording />
                 </Route>
+                <Route exact path="/profile/notifications">
+                  <Notifications />
+                </Route>
                 <Route exact path="/profile/complete"
                   render={() => {
                     setProfileComplete(true);
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                   }>
                 </Route>
                 <Redirect exact from="/" to="/manifest/"></Redirect>
-                <Route render={() => <Redirect to="/profile/" />} />
+                <Route render={() => <Redirect to="/profile/permissions" />} />
               </IonRouterOutlet>
           </IonReactRouter>
         </IonApp>

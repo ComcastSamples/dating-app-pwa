@@ -1,9 +1,12 @@
 import styles from './profile.module.css';
 import React, { useRef, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { IonPage, IonHeader, IonButton, IonContent,
-  IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
-
+import { IonPage, IonHeader, IonContent,
+  IonToolbar, IonTitle, IonItem, IonLabel,
+  IonButtons, IonMenuButton
+} from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 
 const UploadPhotos: React.FC = () => {
@@ -27,21 +30,25 @@ const UploadPhotos: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen>
         <IonHeader>
           <IonToolbar>
+            <IonButtons slot="start">
+              <IonMenuButton></IonMenuButton>
+            </IonButtons>
             <IonTitle>Meowtastic moments</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonItem>
-          <IonLabel>Upload Photo</IonLabel>
-          <input type="file" capture="user" accept="image/*" multiple ref={input}></input>
-        </IonItem>
-        <div className={styles.photoContainer}>
-          {photoMarkup}
-        </div>
-        <IonButton href="/create-profile">Create Profile</IonButton>
-      </IonContent>
+        <Menu></Menu>
+        <IonContent class="ion-padding" id="main-content">
+          <IonItem>
+            <IonLabel>Upload Photo</IonLabel>
+            <input type="file" capture="user" accept="image/*" multiple ref={input}></input>
+          </IonItem>
+          <div className={styles.photoContainer}>
+            {photoMarkup}
+          </div>
+        </IonContent>
+        <Footer prev='/profile/camera' next='/profile/voicerecording'></Footer>
     </IonPage>
   );
 };

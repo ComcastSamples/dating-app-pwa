@@ -4,8 +4,10 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle, IonInput, IonItem, IonLabel,
   IonSpinner, IonPage,
-  IonButtons, IonBackButton
+  IonButtons, IonMenuButton
 } from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 function getLocation() {
   return new Promise((resolve, reject) => {
@@ -26,6 +28,7 @@ function convertToLocation(lat:number, lon:number) {
 
 const Login: React.FC = () => {
   let [location, setLocation] = useLocalStorageState('location', { defaultValue: ''});
+  let [userName, setUserName] = useLocalStorageState('userName', { defaultValue: ''});
   let [loading, setLoading] = useState(false);
 
   function showAddress() {
@@ -34,10 +37,7 @@ const Login: React.FC = () => {
     }
 
     if (location) {
-      return <>
-        <IonItem>{location}</IonItem>
-        <IonButton routerLink="/profile/camera" routerDirection="forward">Move on to Camera</IonButton>
-      </>
+      return <IonItem>{location}</IonItem>
     }
 
     return <IonButton className={styles.button} expand="block" shape="round"
@@ -60,12 +60,13 @@ const Login: React.FC = () => {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton></IonBackButton>
+            <IonMenuButton></IonMenuButton>
             </IonButtons>
             <IonTitle>Looking for cats in your area?</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent class="ion-padding">
+        <Menu></Menu>
+        <IonContent class="ion-padding" id="main-content">
           <h1>Using Geolocation</h1>
           <ul>
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
@@ -76,10 +77,12 @@ const Login: React.FC = () => {
           </p>
           <IonItem>
             <IonLabel>Your Display Name</IonLabel>
-            <IonInput label="Name" placeholder="Your Name"></IonInput>
+            <IonInput label="Name" placeholder="Your Name" value={userName}
+            onIonChange={({ detail }) => setUserName(detail.value)}></IonInput>
           </IonItem>
           {showAddress()}
       </IonContent>
+      <Footer prev='/profile/permissions' next='/profile/camera'></Footer>
     </IonPage>
   );
 };

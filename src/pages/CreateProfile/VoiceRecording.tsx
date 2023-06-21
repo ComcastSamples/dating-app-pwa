@@ -3,7 +3,9 @@ import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent,
   IonToolbar, IonTitle,
-IonButtons, IonBackButton } from '@ionic/react';
+IonButtons, IonMenuButton } from '@ionic/react';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 // https://web.dev/patterns/media/microphone-record/
 
@@ -57,12 +59,13 @@ const VoiceRecording: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton></IonBackButton>
+            <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Catcalling</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding">
+      <Menu></Menu>
+      <IonContent class="ion-padding" id="main-content">
         <div className={styles.imgContainer}>
           <audio controls className={styles.audio}>
             { recording && <source type="audio/wav" src={recording} /> }
@@ -75,6 +78,7 @@ const VoiceRecording: React.FC = () => {
           <IonButton shape="round" onClick={stopRecording}>Stop Recording</IonButton>
         </div>
       </IonContent>
+      <Footer prev='/profile/upload' next='/profile/notifications'></Footer>
     </IonPage>
   );
 };

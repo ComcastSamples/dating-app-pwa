@@ -86,6 +86,10 @@
     if (width && height) {
       canvas.width = width;
       canvas.height = height;
+      // flip image
+      context.translate(width, 0);
+      context.scale(-1, 1);
+
       context.drawImage(video, 0, 0, width, height);
 
       return canvas.toDataURL("image/png");
@@ -94,8 +98,22 @@
     }
   }
 
+  function stop() {
+    if (video) {
+      const stream = video.srcObject;
+      const tracks = stream ? stream.getTracks() : [];
+
+      tracks.forEach((track) => {
+        track.stop();
+      });
+
+      video.srcObject = null;
+    }
+  }
+
   export default {
     start,
     clear,
     take,
+    stop
   }

@@ -15,3 +15,8 @@ self.addEventListener("fetch", (e) => {
     })()
   );
 });
+
+self.addEventListener('push', (event) => {
+  const promiseChain = self.registration.showNotification('Hey!')
+  event.waitUntil(promiseChain)
+})
