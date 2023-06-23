@@ -9,10 +9,9 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
-import { useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, logoOctocat} from 'ionicons/icons';
+import { personCircleOutline, logoOctocat, settingsOutline } from 'ionicons/icons';
 import Login from './pages/Login';
 import ManifestWelcome from './pages/Manifest/';
 import Permissions from './pages/CreateProfile/Permissions';
@@ -21,9 +20,9 @@ import UploadPhotos from './pages/CreateProfile/UploadPhotos';
 import VoiceRecording from './pages/CreateProfile/VoiceRecording';
 import Geo from './pages/CreateProfile/Geo';
 import Notifications from './pages/CreateProfile/Notifications';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import ViewProfile from './pages/ViewProfile';
+import Cats from './pages/Cats';
+import Settings from './pages/Settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -56,73 +55,72 @@ const App: React.FC = () => {
       </IonApp>
   }
 
-  if (!profileComplete) {
-    return <IonApp>
-            <IonReactRouter>
-              <IonRouterOutlet>
-                <Route exact path="/manifest/">
-                  <ManifestWelcome />
-                </Route>
-                <Route exact path="/profile/permissions">
-                  <Permissions />
-                </Route>
-                <Route exact path="/profile/geo">
-                  <Geo />
-                </Route>
-                <Route exact path="/profile/camera">
-                  <Camera />
-                </Route>
-                <Route exact path="/profile/upload">
-                  <UploadPhotos />
-                </Route>
-                <Route exact path="/profile/voicerecording">
-                  <VoiceRecording />
-                </Route>
-                <Route exact path="/profile/notifications">
-                  <Notifications />
-                </Route>
-                <Route exact path="/profile/complete"
-                  render={() => {
-                    setProfileComplete(true);
-                    return <Redirect to="/" />}
-                  }>
-                </Route>
-                <Redirect exact from="/" to="/manifest/"></Redirect>
-                <Route render={() => <Redirect to="/profile/permissions" />} />
-              </IonRouterOutlet>
-          </IonReactRouter>
-        </IonApp>
-  }
-
   return (<IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tab1">
-              <Tab1 />
+            <Route exact path="/viewprofile">
+              <ViewProfile />
             </Route>
-            <Route exact path="/tab2">
-              <Tab2 />
+            <Route exact path="/cats">
+              <Cats />
             </Route>
-            <Route exact path="/tab3">
-              <Tab3 />
+            <Route exact path="/settings">
+              <Settings />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom" hidden>
-            <IonTabButton tab="tab1" href="/tab1">
+            <IonTabButton tab="viewprofile" href="/viewprofile">
+              <IonIcon icon={personCircleOutline} />
+              <IonLabel>View Profile</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="cats" href="/cats">
               <IonIcon icon={logoOctocat} />
-              <IonLabel>Tab 1</IonLabel>
+              <IonLabel>Cute Cats</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
-              <IonIcon icon={ellipse} />
-              <IonLabel>Tab 2</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
-              <IonIcon icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+            <IonTabButton tab="settings" href="/settings">
+              <IonIcon icon={settingsOutline} />
+              <IonLabel>Setup</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
+
+        <Route exact path="/manifest/">
+          <ManifestWelcome />
+        </Route>
+        <Route exact path="/profile/permissions">
+          <Permissions />
+        </Route>
+        <Route exact path="/profile/geo">
+          <Geo />
+        </Route>
+        <Route exact path="/profile/camera">
+          <Camera />
+        </Route>
+        <Route exact path="/profile/upload">
+          <UploadPhotos />
+        </Route>
+        <Route exact path="/profile/voicerecording">
+          <VoiceRecording />
+        </Route>
+        <Route exact path="/profile/notifications">
+          <Notifications />
+        </Route>
+
+        <Route exact path="/profile/complete"
+          render={() => {
+            setProfileComplete(true);
+            return <Redirect to="/viewprofile" />}
+          }>
+        </Route>
+        <Route exact path="/" render={() => {
+            if (profileComplete) {
+              return <Redirect to="/viewprofile" />
+            }
+            return <Redirect to="/manifest/" />
+          }
+        } />
+
       </IonReactRouter>
     </IonApp>);
   };
