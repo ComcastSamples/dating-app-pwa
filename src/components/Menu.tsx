@@ -1,6 +1,9 @@
 import { IonContent, IonHeader, IonMenu, IonTitle, IonToolbar } from '@ionic/react';
+import useLocalStorageState from 'use-local-storage-state';
 
 function Menu() {
+  const [profileComplete] = useLocalStorageState('profileComplete', { defaultValue: false});
+
   return (
     <IonMenu contentId="main-content">
       <IonHeader>
@@ -17,6 +20,9 @@ function Menu() {
           <li><a href="/profile/upload">Upload Photos</a></li>
           <li><a href="/profile/voicerecording">Voice Recording</a></li>
           <li><a href="/profile/notifications">Notifications</a></li>
+          {profileComplete &&
+            <li><a href="/viewprofile">View Profile</a></li>
+          }
         </ol>
       </IonContent>
     </IonMenu>

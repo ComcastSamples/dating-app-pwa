@@ -3,9 +3,9 @@ import useLocalStorageState from 'use-local-storage-state';
 import './Tab1.css';
 
 const Profile: React.FC = () => {
-  let [userName, setUserName] = useLocalStorageState('userName', { defaultValue: ''});
-  let [photo, setPhoto] = useLocalStorageState('photo', { defaultValue: ''});
-  let [recording, setRecording] = useLocalStorageState('recording', { defaultValue: ''});
+  let [userName] = useLocalStorageState('userName', { defaultValue: ''});
+  let [photo] = useLocalStorageState('photo', { defaultValue: ''});
+  let [recording] = useLocalStorageState('recording', { defaultValue: ''});
 
   return (
     <IonPage>
@@ -17,6 +17,10 @@ const Profile: React.FC = () => {
       <IonContent fullscreen class="ion-padding">
         <h2>{userName}</h2>
         <img src={photo} alt="The photo of you" />
+
+        <audio controls>
+          { recording && <source type="audio/wav" src={recording} /> }
+        </audio>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Tab 1</IonTitle>
