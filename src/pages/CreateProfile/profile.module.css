@@ -17,7 +17,7 @@
 }
 
 .imgContainer {
-  display: grid;
+  text-align: center;
 }
 
 .canvas {
@@ -27,11 +27,6 @@
 .video {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-}
-
-.video, .photo {
-  grid-column: 1;
-  grid-row: 1;
 }
 
 .photoContainer {

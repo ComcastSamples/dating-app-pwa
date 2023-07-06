@@ -37,13 +37,23 @@ const Camera: React.FC = () => {
       </IonHeader>
       <Menu></Menu>
       <IonContent class="ion-padding" id="main-content">
+        <h1>Smile! 📸</h1>
+        <ul>
+          <li><a href="https://web.dev/media-capturing-images/" rel="noreferrer" target="_blank">web.dev: Capturing an image from the user</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Taking_still_photos" rel="noreferrer" target="_blank">MDN: Taking still photos with getUserMedia()</a></li>
+          <li><a href="https://christianheilmann.com/2013/07/19/flipping-the-image-when-accessing-the-laptop-camera-with-getusermedia/" rel="noreferrer" target="_blank">Flipping the image when accessing the laptop camera with getUserMedia</a></li>
+        </ul>
+        <p>
+          Leverage the provided <code>start</code>, <code>stop</code>, and <code>take</code> functions from <code>src/pages/CreateProfile/work/camera.js</code> to capture a photo using your webcam.
+        </p>
+        <p>Also use the provided <code>clear</code> function to clear the taken photo.</p>
         <div className={styles.imgContainer}>
           <video id="video" className={styles.video}
             style={photo ? {display: 'none'} : {}}></video>
           <canvas id="canvas" className={styles.canvas}></canvas>
-          <img alt="from your camera" id="photo" src={photo} className={styles.photo} />
+          <img alt="" id="photo" src={photo} className={styles.photo} style={photo ? {} : {display: 'none'}} />
         </div>
-        <div className='ion-text-center'>
+        <div className="ion-text-center">
           {photo ?
             <IonButton shape="round" onClick={clearPhoto}>Clear Photo</IonButton>
             : <IonButton shape="round" onClick={takePhoto}>Take Photo</IonButton>}
