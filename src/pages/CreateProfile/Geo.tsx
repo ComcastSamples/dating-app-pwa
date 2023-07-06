@@ -21,6 +21,7 @@ function getLocation() {
   });
 }
 
+// https://nominatim.org/release-docs/develop/api/Reverse/
 function convertToLocation(lat:number, lon:number) {
   return fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
     .then(r => r.json());
@@ -37,22 +38,8 @@ const Login: React.FC = () => {
     }
 
     if (location) {
-      return <IonItem>{location}</IonItem>
+      return <IonItem>Location: {location}</IonItem>
     }
-
-    return <IonButton className={styles.button} expand="block" shape="round"
-      onClick={(e) => {
-        e.preventDefault();
-        setLoading(true);
-        getLocation().then(
-          (location: any) => {
-            let {address} = location;
-            setLocation(`${address.city}, ${address.state}`);
-            setLoading(false);
-          })
-      }}>
-        Get Location
-    </IonButton>
   }
 
   return (
@@ -69,18 +56,36 @@ const Login: React.FC = () => {
         <IonContent class="ion-padding" id="main-content">
           <h1>Using Geolocation</h1>
           <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API" rel="noreferrer" target="_blank">MDN: Using the Geolocation API</a></li>
           </ul>
           <p>
-            Geolocation will give the latitude and logitude of the user. Use the convertToLocation
-            function to display city and state in setLocation. Also enter your name for the profile.
+            The Geolocation API will return the latitude and longitude of the user.
+          </p>
+          <p>
+            Use the provided <code>convertToLocation</code> function to display city and state in a <code>setLocation</code> function that leverages <a href="https://www.npmjs.com/package/use-local-storage-state" rel="noreferrer" target="_blank"><code>use-local-storage-state</code></a> React <a href="https://react.dev/learn/reusing-logic-with-custom-hooks" rel="noreferrer" target="_blank">Custom Hook</a>.
+          </p>
+          <p>
+            Also, be sure to enter your name for the profile.
           </p>
           <IonItem>
             <IonLabel>Your Display Name</IonLabel>
-            <IonInput label="Name" placeholder="Your Name" value={userName}
+            <IonInput label="Name:" placeholder="Your Name" value={userName}
             onIonChange={({ detail }) => setUserName(detail.value)}></IonInput>
           </IonItem>
           {showAddress()}
+          <IonButton className={styles.button} expand="block" shape="round"
+            onClick={(e) => {
+              e.preventDefault();
+              setLoading(true);
+              getLocation().then(
+                (location: any) => {
+                  let {address} = location;
+                  setLocation(`${address.city || address.town || address.borough || address.village || address.suburb}, ${address.state}`);
+                  setLoading(false);
+                })
+            }}>
+            { location ? 'Update' : 'Get'} Location
+          </IonButton>
       </IonContent>
       <Footer prev='/profile/permissions' next='/profile/camera'></Footer>
     </IonPage>
