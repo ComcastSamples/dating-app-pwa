@@ -5,7 +5,7 @@ const Login = (props: any) => {
   return (
     <IonContent className={styles.content}>
       <video height="100%" playsInline autoPlay muted className={styles.videoSplash}>
-        <source src="./assets/splash.mp4" type="video/mp4" />
+        <source src={process.env.PUBLIC_URL + '/assets/splash.mp4'} type="video/mp4" />
       </video>
       <h2 className={styles.header}>Finge</h2>
       <p className={styles.tagline}>Dating for felines</p>
