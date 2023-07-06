@@ -20,10 +20,14 @@
   font-size: 16px;
   color: white;
   position: absolute;
-  max-width: 600px;
+  max-width: 50vh;
   left: 50%;
   transform: translate(-50%, 0%);
-  bottom: 80px;
+  bottom: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 16px 24px;
+  border-radius: 24px;
+  margin: 0;
 }
 
 .videoSplash {
