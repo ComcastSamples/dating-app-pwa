@@ -30,12 +30,12 @@ const ManifestWelcome: React.FC = () => {
           Manifest
         </h1>
         <ul>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#required_manifest_members" target="_blank" rel="noreferrer">Manifest</a></li>
-          <li><a href="https://web.dev/add-manifest/" target="_blank" rel="noreferrer">Manifest details</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#required_manifest_members" target="_blank" rel="noreferrer">Manifest Intro: Making PWAs installable</a></li>
+          <li><a href="https://web.dev/add-manifest/" target="_blank" rel="noreferrer">Manifest Details: Add a web app manifest</a></li>
         </ul>
         <p>
           We're going to create a Dating App for Cats using the latest web technologies. First thing we need to
-          do is make sure our app is a PWA! Ionic starter kit created our manifest file for us, so we'll just make a few tweaks by adding / updating:
+          do is make sure our app is a PWA! Ionic Starter Kit created our <code>manifest.json</code> file for us in the root of the <code>public</code> folder, so we'll just make a few tweaks by adding / updating:
         </p>
         <pre>
           <code>
@@ -47,10 +47,13 @@ const ManifestWelcome: React.FC = () => {
 
         <h2>Service Workers <IonIcon icon={online ? cloudDone : cloudOffline} style={{verticalAlign: 'middle'}}></IonIcon></h2>
         <ul>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Offline_Service_workers#responding_to_fetches" target="_blank" rel="noreferrer">Service Workers Tutorial</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Offline_Service_workers#responding_to_fetches" target="_blank" rel="noreferrer">Service Workers Tutorial: Making PWAs work offline with Service workers</a></li>
         </ul>
         <p>
-          For service workers we just need to respond to the fetch request, so we can return files when we're offline. Edit service-worker.js in public folder to handle fetch requests. Check to make sure it works by reloading and toggling offline mode.
+          For service workers, the only thing we need to do is respond to <code>fetch</code> requests so we can return locally cached files when we're offline. Edit <code>service-worker.js</code> in the public folder to handle <code>fetch</code> requests. Check to make sure it works by reloading and toggling offline mode in your browser's Developer Tools.
+        </p>
+        <p>
+          Note that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/self" target="_blank" rel="noreferrer"><code>self</code> property</a> you will see referenced in Service Worker code is a read-only property of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope" target="_blank" rel="noreferrer"><code>ServiceWorkerGlobalScope</code> interface</a> that returns a reference to the <code>ServiceWorkerGlobalScope</code> itself.
         </p>
       </IonContent>
       <Footer prev='' next='/profile/permissions'></Footer>
