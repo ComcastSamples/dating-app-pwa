@@ -12,28 +12,26 @@ npm start
 ```
 
 ### What's Inside
-[Ionic](https://github.com/rdkcentral/Lightning) |
-[React](https://github.com/rdkcentral/Lightning-SDK) |
-[Workbox](https://github.com/rdkcentral/Lightning-CLI) |
+[Ionic](https://ionicframework.com/docs/react) |
+[React](https://react.dev/) |
+[Workbox](https://developer.chrome.com/docs/workbox/) |
 
 ## Detailed Getting Started
 
 1. Install [node](https://nodejs.org/en/download/).
 
-    The build image is based on latest LTS. It is strongly recommended that all developers use the same version to avoid inconsistencies between libraries.  Using NVM (Node Version Manager) is an easy way to switch between Node versions.
+    The build image is based on Node.js v18, which is [LTS through October 18, 2023](https://github.com/nodejs/release#release-schedule). It is strongly recommended that all developers use the same version to avoid inconsistencies between libraries.  Using NVM (Node Version Manager) is an easy way to switch between Node versions. Docs and Installation Instructions for NVM are available at [NVM's Github page](https://github.com/nvm-sh/nvm).
 
-    Docs and Installation Instructions on [Github](https://github.com/nvm-sh/nvm).
-
-    Examples:
+    Once you install NVM, install Node.js:
 
     ```
-    nvm install lts/*
+    nvm install 18
     ```
 
-    After installing, tell NVM to use that version:
+    After installing, tell NVM to use that version using this repo's `.nvmrc` file:
 
     ```
-    nvm use lts/*
+    nvm use
     ```
 
 2. Install dependencies:
@@ -50,6 +48,6 @@ npm start
     npm start
     ```
 
-    This should point your browser to http://127.0.0.1:8080/#home.
+    This should point your browser to http://localhost:3000/
 
     If you make code changes, the app will update and refresh.
