@@ -38,13 +38,15 @@ const Permissions: React.FC = () => {
       <IonContent class="ion-padding" id="main-content">
         <h1>Getting access with Permissions API</h1>
         <ul>
-          <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" rel="noreferrer" target="_blank">Chrome Permissions Blog</a></li>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API" rel="noreferrer" target="_blank">MDN Permissions</a></li>
+          <li><a href="https://developer.chrome.com/blog/permissions-api-for-the-web/" rel="noreferrer" target="_blank">Chrome Developers Blog: Permissions API for the Web</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API/Using_the_Permissions_API" rel="noreferrer" target="_blank">MDN: Using the Permissions API</a></li>
         </ul>
 
         <p>
-          We need to get permission to use "camera", "geolocation", and "microphone". Read up on the docs
-          and then set the corresponding states then move on.
+          We need to get permission to use the <code>"camera"</code>, <code>"geolocation"</code>, and <code>"microphone"</code> APIs.
+        </p>
+        <p>
+          Read up on the docs and display each API's current permission state below then move on to the next section.
         </p>
 
         <ul>
