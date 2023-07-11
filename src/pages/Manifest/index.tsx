@@ -17,7 +17,7 @@ const ManifestWelcome: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={online ? "" : "medium"}>
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
@@ -50,10 +50,13 @@ const ManifestWelcome: React.FC = () => {
           <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Offline_Service_workers#responding_to_fetches" target="_blank" rel="noreferrer">Service Workers Tutorial: Making PWAs work offline with Service workers</a></li>
         </ul>
         <p>
-          For service workers, the only thing we need to do is respond to <code>fetch</code> requests so we can return locally cached files when we're offline. Edit <code>service-worker.js</code> in the public folder to handle <code>fetch</code> requests. Check to make sure it works by reloading and toggling offline mode in your browser's Developer Tools.
+          For service workers, the we need to respond to <code>fetch</code> requests so we can return locally cached files when we're offline. Edit <code>service-worker.js</code> in the public folder to handle <code>fetch</code> requests. Check to make sure it works by reloading and toggling offline mode in your browser's Developer Tools.
         </p>
         <p>
           Note that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/self" target="_blank" rel="noreferrer"><code>self</code> property</a> you will see referenced in Service Worker code is a read-only property of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope" target="_blank" rel="noreferrer"><code>ServiceWorkerGlobalScope</code> interface</a> that returns a reference to the <code>ServiceWorkerGlobalScope</code> itself.
+        </p>
+        <p>
+          If the service worker is set up properly, then when the connection is offline, the top bar of this page will change to grey and the cloud icon for the Service Workers header will lose its checkmark.
         </p>
       </IonContent>
       <Footer prev='' next='/profile/permissions'></Footer>
