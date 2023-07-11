@@ -17,7 +17,7 @@ const Login = (props: any) => {
           Get Started
       </IonButton>
 
-      <p className={styles.subtagline}>A Progressive Web App workshop teaching you about the best the web has to offer as an alternative to native apps.</p>
+      <p className={styles.slogan}>A Progressive Web App workshop teaching you about the best the web has to offer as an alternative to native apps.</p>
     </IonContent>
   );
 };
