@@ -62,7 +62,7 @@ const Notifications: React.FC = () => {
         </ul>
 
         <p>
-          Lets make sure we can notify our cats of potentional mates.
+          Lets make sure we can notify our cats of potential mates.
         </p>
 
         <IonButton onClick={displayNotification}>Display Notification</IonButton>
