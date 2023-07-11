@@ -62,7 +62,7 @@ const Login: React.FC = () => {
             The Geolocation API will return the latitude and longitude of the user.
           </p>
           <p>
-            Use the provided <code>convertToLocation</code> function to display city and state in a <code>setLocation</code> function that leverages <a href="https://www.npmjs.com/package/use-local-storage-state" rel="noreferrer" target="_blank"><code>use-local-storage-state</code></a> React <a href="https://react.dev/learn/reusing-logic-with-custom-hooks" rel="noreferrer" target="_blank">Custom Hook</a>.
+            Use the provided <code>convertToLocation</code> function to display city and state in a <code>setLocation</code> function that leverages <a href="https://www.npmjs.com/package/use-local-storage-state" rel="noreferrer" target="_blank"><code>use-local-storage-state</code></a> React <a href="https://react.dev/learn/reusing-logic-with-custom-hooks" rel="noreferrer" target="_blank">Custom Hook</a> so we can use it later for the ViewProfile page.
           </p>
           <p>
             Also, be sure to enter your name for the profile.
