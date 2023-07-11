@@ -82,6 +82,9 @@ const Login: React.FC = () => {
                   let {address} = location;
                   setLocation(`${address.city || address.town || address.borough || address.village || address.suburb}, ${address.state}`);
                   setLoading(false);
+                }).catch(_ => {
+                  setLocation("Unknown");
+                  setLoading(false);
                 })
             }}>
             { location ? 'Update' : 'Get'} Location
