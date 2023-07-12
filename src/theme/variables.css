@@ -78,10 +78,7 @@ http://ionicframework.com/docs/theming/ */
   /** toolbar **/
   --ion-toolbar-background: #faffbd;
   --ion-toolbar-border-color: #dbd37d;
-}
-
-ion-content::part(background) {
-  background: fixed #fff url("../images/finge-bg.png") center bottom -160px no-repeat;
+  --ion-tab-bar-background: #faffbd;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -43,6 +43,9 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Overall app styles */
+import './theme/styles.css';
+
 setupIonicReact();
 
 const App: React.FC = () => {
