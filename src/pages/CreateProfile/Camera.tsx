@@ -34,7 +34,9 @@ const Camera: React.FC = () => {
 
   const stopStreaming = () => {
     const player = videoRef.current;
-    player.srcObject.getVideoTracks().forEach(track => track.stop());
+    if (player) {
+      player.srcObject.getVideoTracks().forEach(track => track.stop());
+    }
   }
 
   const flipImage = () => {

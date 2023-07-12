@@ -16,7 +16,7 @@ const Tab2: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <h3>Meet Zhang</h3>
-        <img src="./assets/cats/zhang.jpg" alt="one cute cat" />
+        <img src="../assets/cats/zhang.jpg" alt="one cute cat" />
       </IonContent>
     </IonPage>
   );
