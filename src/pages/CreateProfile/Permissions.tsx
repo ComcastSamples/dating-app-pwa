@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IonHeader, IonContent, IonButtons,
-  IonToolbar, IonTitle, IonPage, IonMenuButton
+  IonToolbar, IonTitle, IonPage, IonMenuButton, IonChip
 } from '@ionic/react';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
@@ -32,6 +32,7 @@ const Permissions: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Asking Purr-mission!</IonTitle>
+          <IonChip slot="end" disabled>2 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>

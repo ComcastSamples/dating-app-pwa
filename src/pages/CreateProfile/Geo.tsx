@@ -1,7 +1,7 @@
 import styles from './profile.module.css';
 import React, { useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { IonHeader, IonButton, IonContent,
+import { IonHeader, IonButton, IonContent, IonChip,
   IonToolbar, IonTitle, IonInput, IonItem, IonLabel,
   IonSpinner, IonPage,
   IonButtons, IonMenuButton
@@ -50,6 +50,7 @@ const Login: React.FC = () => {
             <IonMenuButton></IonMenuButton>
             </IonButtons>
             <IonTitle>Looking for cats in your area?</IonTitle>
+            <IonChip slot="end" disabled>3 of 7</IonChip>
           </IonToolbar>
         </IonHeader>
         <Menu></Menu>

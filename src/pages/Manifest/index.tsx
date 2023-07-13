@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { cloudOffline, cloudDone } from 'ionicons/icons';
 import { IonPage, IonHeader, IonContent,
-  IonToolbar, IonTitle, IonIcon, IonMenuButton, IonButtons
+  IonToolbar, IonTitle, IonIcon, IonMenuButton, IonButtons, IonChip
 } from '@ionic/react';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
@@ -22,6 +22,7 @@ const ManifestWelcome: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Make PWA Installable</IonTitle>
+          <IonChip slot="end" disabled>1 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>

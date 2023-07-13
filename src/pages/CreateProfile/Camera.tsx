@@ -2,7 +2,7 @@
 import styles from './profile.module.css';
 import React, { useEffect, useRef } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { IonPage, IonHeader, IonButton, IonContent,
+import { IonPage, IonHeader, IonButton, IonContent, IonChip,
   IonToolbar, IonTitle, IonButtons, IonMenuButton  } from '@ionic/react';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
@@ -78,6 +78,7 @@ const Camera: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Get ready to capture the cattitude</IonTitle>
+          <IonChip slot="end" disabled>4 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>

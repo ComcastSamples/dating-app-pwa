@@ -1,7 +1,7 @@
 import styles from './profile.module.css';
 import React, { useState, useRef, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { IonPage, IonHeader, IonButton, IonContent,
+import { IonPage, IonHeader, IonButton, IonContent, IonChip,
   IonToolbar, IonTitle, IonItem, IonLabel, IonSpinner,
 IonButtons, IonMenuButton } from '@ionic/react';
 import Menu from '../../components/Menu';
@@ -72,6 +72,7 @@ const VoiceRecording: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Catcalling</IonTitle>
+          <IonChip slot="end" disabled>6 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>

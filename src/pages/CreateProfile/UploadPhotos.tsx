@@ -1,7 +1,7 @@
 import styles from './profile.module.css';
 import React, { useRef, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { IonPage, IonHeader, IonContent,
+import { IonPage, IonHeader, IonContent, IonChip,
   IonToolbar, IonTitle, IonItem, IonLabel,
   IonButtons, IonMenuButton
 } from '@ionic/react';
@@ -36,6 +36,7 @@ const UploadPhotos: React.FC = () => {
               <IonMenuButton></IonMenuButton>
             </IonButtons>
             <IonTitle>Meowtastic moments</IonTitle>
+            <IonChip slot="end" disabled>5 of 7</IonChip>
           </IonToolbar>
         </IonHeader>
         <Menu></Menu>

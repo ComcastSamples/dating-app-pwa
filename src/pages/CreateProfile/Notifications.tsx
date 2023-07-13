@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonHeader, IonButton, IonContent, IonButtons,
-  IonToolbar, IonTitle, IonMenuButton, IonPage
+  IonToolbar, IonTitle, IonMenuButton, IonPage, IonChip
 } from '@ionic/react';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
@@ -95,6 +95,7 @@ const Notifications: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Notifying our Cats</IonTitle>
+          <IonChip slot="end" disabled>7 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>
