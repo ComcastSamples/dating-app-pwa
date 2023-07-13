@@ -48,8 +48,10 @@ const UploadPhotos: React.FC = () => {
             Upload photos and use the File API to render them to the screen.
           </p>
           <IonItem>
-            <IonLabel>Upload Photo</IonLabel>
-            <input type="file" capture="user" accept="image/*" multiple ref={input}></input>
+            <IonLabel>Upload Photo(s):</IonLabel>
+          </IonItem>
+          <IonItem>
+            <div><input type="file" capture="user" accept="image/*" multiple ref={input}></input></div>
           </IonItem>
           <div className={styles.photoContainer}>
             {photoMarkup}

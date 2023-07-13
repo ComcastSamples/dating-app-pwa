@@ -9,12 +9,7 @@ const Tab2: React.FC = () => {
           <IonTitle>Cute Cats</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Cute Cats</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent fullscreen class="ion-padding">
         <h3>Meet Zhang</h3>
         <img src="../assets/cats/zhang.jpg" alt="one cute cat" />
       </IonContent>
