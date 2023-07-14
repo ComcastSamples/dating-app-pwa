@@ -11,7 +11,6 @@ import Footer from '../../components/Footer';
 
 const UploadPhotos: React.FC = () => {
   let [photos, setPhotos] = useLocalStorageState('photos', { defaultValue: []});
-  let input = useRef(null);
   let filesToProcess = useRef([]);
 
   const readFile = (file: File) => {
@@ -31,18 +30,17 @@ const UploadPhotos: React.FC = () => {
 
   processFiles();
 
-  useEffect(() => {
-    input.current.onchange = () => {
-      if (input.current.files && input.current.files.length > 0) {
-        // yep we're for looping, the Files are a FileList that is NOT an Array
-        for (let i = 0; i < input.current.files.length; i++) {
-          let file = input.current.files[i];
-          filesToProcess.current.push(file);
-        }
-        processFiles();
+  const handleFileUpload = event => {
+    let fileList = event.target.files;
+    if (fileList && fileList.length > 0) {
+      // yep we're for looping, the Files are a FileList that is NOT an Array
+      for (let i = 0; i < fileList.length; i++) {
+        let file = fileList[i];
+        filesToProcess.current.push(file);
       }
+      processFiles();
     }
-  })
+  }
 
   const photoMarkup = photos.map((photo, index) => <img alt="your uploaded pics" className={styles.photoThumb} src={photo} key={index} />);
 
@@ -70,7 +68,7 @@ const UploadPhotos: React.FC = () => {
             <IonLabel>Upload Photo(s):</IonLabel>
           </IonItem>
           <IonItem>
-            <div><input type="file" capture="user" accept="image/*" multiple ref={input}></input></div>
+            <div><input type="file" capture="user" accept="image/*" multiple onChange={handleFileUpload}></input></div>
           </IonItem>
           <div className={styles.photoContainer}>
             {photoMarkup}
