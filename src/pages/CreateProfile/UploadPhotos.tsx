@@ -12,16 +12,34 @@ import Footer from '../../components/Footer';
 const UploadPhotos: React.FC = () => {
   let [photos, setPhotos] = useLocalStorageState('photos', { defaultValue: []});
   let input = useRef(null);
+  let filesToProcess = useRef([]);
+
+  const readFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setPhotos(photos.concat(e.target.result));
+    };
+    reader.readAsDataURL(file);
+  }
+
+  const processFiles = () => {
+    if (filesToProcess.current.length > 0) {
+      let nextFile = filesToProcess.current.shift();
+      readFile(nextFile);
+    }
+  }
+
+  processFiles();
 
   useEffect(() => {
     input.current.onchange = () => {
-      const [file] = input.current.files
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          setPhotos(photos.concat(e.target.result))
-        };
-        reader.readAsDataURL(file);
+      if (input.current.files && input.current.files.length > 0) {
+        // yep we're for looping, the Files are a FileList that is NOT an Array
+        for (let i = 0; i < input.current.files.length; i++) {
+          let file = input.current.files[i];
+          filesToProcess.current.push(file);
+        }
+        processFiles();
       }
     }
   })
