@@ -8,7 +8,7 @@ const Login = (props: any) => {
         <source src={process.env.PUBLIC_URL + '/assets/splash.mp4'} type="video/mp4" />
       </video>
       <h2 className={styles.header}>Finge</h2>
-      <p className={styles.tagline}>Dating for felines</p>
+      <p className={styles.tagline}>Dating for Felines</p>
 
       <IonButton
         className="button"

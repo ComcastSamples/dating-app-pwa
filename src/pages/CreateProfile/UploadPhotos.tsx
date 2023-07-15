@@ -1,5 +1,5 @@
 import styles from './profile.module.css';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonContent, IonChip,
   IonToolbar, IonTitle, IonItem, IonLabel,
@@ -66,7 +66,7 @@ const UploadPhotos: React.FC = () => {
             <IonLabel>Upload Photo(s):</IonLabel>
           </IonItem>
           <IonItem>
-            <div><input type="file" capture="user" accept="image/*" multiple onChange={handleFileUpload}></input></div>
+            <div><input type="file" accept="image/*" multiple onChange={handleFileUpload}></input></div>
           </IonItem>
           <div className={styles.photoContainer}>
             {photoMarkup}
