@@ -6,7 +6,6 @@ import { IonHeader, IonButton, IonContent, IonChip,
   IonSpinner, IonPage,
   IonButtons, IonMenuButton
 } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 function getLocation() {
@@ -53,7 +52,6 @@ const Login: React.FC = () => {
             <IonChip slot="end" disabled>3 of 7</IonChip>
           </IonToolbar>
         </IonHeader>
-        <Menu></Menu>
         <IonContent class="ion-padding" id="main-content">
           <h1>Using Geolocation</h1>
           <ul>

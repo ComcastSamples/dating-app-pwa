@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonHeader, IonButton, IonContent, IonButtons,
   IonToolbar, IonTitle, IonMenuButton, IonPage, IonChip
 } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 //The spec: https://notifications.spec.whatwg.org/
@@ -71,6 +70,12 @@ async function subscribeToPush() {
   postToServer('https://lovely-spicy-card.glitch.me/add-subscription', subscription);
 }
 
+function enableNotifications() {
+  Notification.requestPermission().then((result) => {
+    console.log(result);
+  });
+}
+
 async function displayNotification() {
   const registration = await navigator.serviceWorker.getRegistration();
   registration.showNotification('Permission Granted!', MyNotification);
@@ -87,6 +92,12 @@ app.use(function(req, res, next) {
 */
 
 const Notifications: React.FC = () => {
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+
+  navigator.permissions.query({name: 'notifications'}).then(permission => {
+    setNotificationsEnabled(permission.state === 'granted');
+  });
+
   return (
     <IonPage>
       <IonHeader>
@@ -98,7 +109,6 @@ const Notifications: React.FC = () => {
           <IonChip slot="end" disabled>7 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
-      <Menu></Menu>
       <IonContent class="ion-padding" id="main-content">
         <h1>Notifications</h1>
         <ul>
@@ -112,6 +122,8 @@ const Notifications: React.FC = () => {
           After the server push codelab, we'll hook this page the server codelab and get a notification from our server.
         </p>
 
+        <IonButton onClick={enableNotifications} disabled={notificationsEnabled}>{
+          notificationsEnabled ? 'Noficications Enabled' : "Enable Notifications" }</IonButton>
         <IonButton onClick={displayNotification}>Display Notification</IonButton>
         <IonButton onClick={subscribeToPush}>Subscribe To Push Notification</IonButton>
       </IonContent>

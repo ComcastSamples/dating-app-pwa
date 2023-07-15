@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IonHeader, IonContent, IonButtons,
   IonToolbar, IonTitle, IonPage, IonMenuButton, IonChip
 } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 const Permissions: React.FC = () => {
@@ -35,7 +34,6 @@ const Permissions: React.FC = () => {
           <IonChip slot="end" disabled>2 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
-      <Menu></Menu>
       <IonContent class="ion-padding" id="main-content">
         <h1>Getting access with Permissions API</h1>
         <ul>

@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent, IonChip,
   IonToolbar, IonTitle, IonButtons, IonMenuButton  } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 // https://web.dev/media-capturing-images/
@@ -81,7 +80,6 @@ const Camera: React.FC = () => {
           <IonChip slot="end" disabled>4 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
-      <Menu></Menu>
       <IonContent class="ion-padding" id="main-content">
         <h1>Smile! 📸</h1>
         <ul>

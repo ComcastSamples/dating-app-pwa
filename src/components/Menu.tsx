@@ -13,36 +13,36 @@ function Menu() {
       </IonHeader>
       <IonContent>
         <IonList>
-          <IonItem href="/manifest/">
+          <IonItem routerLink="/manifest/">
             <IonChip slot="start">1</IonChip>
             <IonLabel>Manifest and SW</IonLabel>
           </IonItem>
-          <IonItem href="/profile/permissions">
+          <IonItem routerLink="/profile/permissions">
             <IonChip slot="start">2</IonChip>
             <IonLabel>Permissions</IonLabel>
           </IonItem>
-          <IonItem href="/profile/geo">
+          <IonItem routerLink="/profile/geo">
             <IonChip slot="start">3</IonChip>
             <IonLabel>Geolocation</IonLabel>
           </IonItem>
-          <IonItem href="/profile/camera">
+          <IonItem routerLink="/profile/camera">
             <IonChip slot="start">4</IonChip>
             <IonLabel>Camera</IonLabel>
           </IonItem>
-          <IonItem href="/profile/upload">
+          <IonItem routerLink="/profile/upload">
             <IonChip slot="start">5</IonChip>
             <IonLabel>Upload Photos</IonLabel>
           </IonItem>
-          <IonItem href="/profile/voicerecording">
+          <IonItem routerLink="/profile/voicerecording">
             <IonChip slot="start">6</IonChip>
             <IonLabel>Voice Recording</IonLabel>
           </IonItem>
-          <IonItem href="/profile/notifications">
+          <IonItem routerLink="/profile/notifications">
             <IonChip slot="start">7</IonChip>
             <IonLabel>Notifications</IonLabel>
           </IonItem>
           {profileComplete &&
-            <IonItem href="/viewprofile">
+            <IonItem routerLink="/viewprofile">
               <IonChip slot="start">*</IonChip>
               <IonLabel>View Profile</IonLabel>
             </IonItem>

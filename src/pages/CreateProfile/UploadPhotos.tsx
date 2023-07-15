@@ -5,7 +5,6 @@ import { IonPage, IonHeader, IonContent, IonChip,
   IonToolbar, IonTitle, IonItem, IonLabel,
   IonButtons, IonMenuButton
 } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 
@@ -55,7 +54,6 @@ const UploadPhotos: React.FC = () => {
             <IonChip slot="end" disabled>5 of 7</IonChip>
           </IonToolbar>
         </IonHeader>
-        <Menu></Menu>
         <IonContent class="ion-padding" id="main-content">
           <h1>Candid Uploads 🎞️</h1>
           <ul>

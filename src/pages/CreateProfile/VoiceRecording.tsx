@@ -4,7 +4,6 @@ import useLocalStorageState from 'use-local-storage-state';
 import { IonPage, IonHeader, IonButton, IonContent, IonChip,
   IonToolbar, IonTitle, IonItem, IonLabel, IonSpinner,
 IonButtons, IonMenuButton } from '@ionic/react';
-import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 
 const VoiceRecording: React.FC = () => {
@@ -75,7 +74,6 @@ const VoiceRecording: React.FC = () => {
           <IonChip slot="end" disabled>6 of 7</IonChip>
         </IonToolbar>
       </IonHeader>
-      <Menu></Menu>
       <IonContent class="ion-padding" id="main-content">
         <h1>Recording Audio 🎙️</h1>
         <ul>

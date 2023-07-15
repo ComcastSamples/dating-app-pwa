@@ -23,6 +23,7 @@ import Notifications from './pages/CreateProfile/Notifications';
 import ViewProfile from './pages/ViewProfile';
 import Cats from './pages/Cats';
 import Settings from './pages/Settings';
+import Menu from './components/Menu';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -87,6 +88,7 @@ const App: React.FC = () => {
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
+        <div id="main-content"></div>
 
         <Route exact path="/manifest/">
           <ManifestWelcome />
@@ -109,6 +111,7 @@ const App: React.FC = () => {
         <Route exact path="/profile/notifications">
           <Notifications />
         </Route>
+        <Menu></Menu>
 
         <Route exact path="/profile/complete"
           render={() => {
