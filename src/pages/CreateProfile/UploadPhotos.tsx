@@ -58,6 +58,7 @@ const UploadPhotos: React.FC = () => {
           <h1>Candid Uploads 🎞️</h1>
           <ul>
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications" rel="noreferrer" target="_blank">MDN: Using files from web applications</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture" rel="noreferrer" target="_blank">MDN: Input Capture</a></li>
           </ul>
           <p>
             Upload photos and use the File API to render them to the screen.

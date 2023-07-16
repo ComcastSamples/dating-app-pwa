@@ -6,6 +6,7 @@ import { IonPage, IonHeader, IonButton, IonContent, IonChip,
 IonButtons, IonMenuButton } from '@ionic/react';
 import Footer from '../../components/Footer';
 
+
 const VoiceRecording: React.FC = () => {
   let [recording, setRecording] = useLocalStorageState('recording', { defaultValue: ''});
   let [recordingInProgress, setRecordingInProgress] = useState(false);
@@ -29,10 +30,12 @@ const VoiceRecording: React.FC = () => {
     }
   }, [recordingTime, recordingInProgress]);
 
+  const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4';
   const handleSuccess = function(stream:any) {
     const recordedChunks = [];
     setRecordingInProgress(true);
-    mediaRecorder.current = new MediaRecorder(stream, {mimeType: 'audio/webm'});
+
+    mediaRecorder.current = new MediaRecorder(stream, { mimeType });
 
     mediaRecorder.current.addEventListener('dataavailable', function(e) {
       if (e.data.size > 0) recordedChunks.push(e.data);
@@ -55,6 +58,7 @@ const VoiceRecording: React.FC = () => {
   function stopRecording() {
     mediaRecorder.current.stop();
     setRecordingInProgress(false);
+    setRecordingTime(0);
     clearTimeout(timerRef.current);
   }
 
@@ -90,7 +94,7 @@ const VoiceRecording: React.FC = () => {
         <div className={styles.imgContainer}>
           { recording &&
             <audio controls className={styles.audio}>
-              <source type="audio/webm" src={recording} />
+              <source type={mimeType} src={recording} />
             </audio>
           }
         </div>

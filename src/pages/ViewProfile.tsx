@@ -7,6 +7,7 @@ const Profile: React.FC = () => {
   let [location] = useLocalStorageState('location', { defaultValue: ''});
   let [photo] = useLocalStorageState('photo', { defaultValue: ''});
   let [recording] = useLocalStorageState('recording', { defaultValue: ''});
+  const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4';
 
   return (
     <IonPage>
@@ -29,16 +30,12 @@ const Profile: React.FC = () => {
         </IonItem>
         <IonItem>
           <div className="media">
-            <audio controls>
-              { recording && <source type="audio/webm" src={recording} /> }
+          { recording && <audio controls>
+              <source type={mimeType} src={recording} />
             </audio>
+          }
           </div>
         </IonItem>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
       </IonContent>
     </IonPage>
   );

@@ -92,7 +92,7 @@ const Camera: React.FC = () => {
         </p>
 
         <div className={styles.imgContainer}>
-          <video id="video" autoPlay ref={videoRef} className={styles.video} hidden={!!photo}></video>
+          <video id="video" autoPlay ref={videoRef} className={styles.video} hidden={!!photo} playsInline></video>
           <canvas id="canvas" ref={canvasRef} width="960" height="540" hidden></canvas>
           <img alt="" id="photo" src={photo} className={styles.photo} hidden={!photo} />
         </div>

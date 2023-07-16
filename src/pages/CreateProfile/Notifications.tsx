@@ -96,7 +96,7 @@ const Notifications: React.FC = () => {
 
   navigator.permissions.query({name: 'notifications'}).then(permission => {
     setNotificationsEnabled(permission.state === 'granted');
-  });
+  }).catch(e => console.log(e));
 
   return (
     <IonPage>
