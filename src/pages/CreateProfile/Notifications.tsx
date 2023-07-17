@@ -60,16 +60,6 @@ async function postToServer(url, data) {
   console.log(response);
 }
 
-const VAPID_PUBLIC_KEY = 'BHa2cccM28C-AGTVTt4I4ADnwBiOzlz3RgwUdFOXHNAh3SymMgzx51s8uUPx2DhTBVpbPx-uTx7dHcDGCpqPaqI';
-async function subscribeToPush() {
-  const registration = await navigator.serviceWorker.getRegistration();
-  const subscription = await registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
-  });
-  postToServer('https://lovely-spicy-card.glitch.me/add-subscription', subscription);
-}
-
 function enableNotifications() {
   Notification.requestPermission().then((result) => {
     console.log(result);
@@ -82,7 +72,7 @@ async function displayNotification() {
 }
 
 /*
-Enable CORS on Codelab - Place at top
+Enable CORS on Codelab - Place this near top of the Server Codelab code after app is declared
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -93,10 +83,47 @@ app.use(function(req, res, next) {
 
 const Notifications: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [notificationsSubscribed, setNotificationsSubscribed] = useState(false);
+  let registration = null;
+  let subscription = null;
+
+  async function getSubscription() {
+    registration = await navigator.serviceWorker.getRegistration();
+    subscription = await registration.pushManager.getSubscription();
+    if (subscription && subscription.endpoint) {
+      setNotificationsSubscribed(true);
+    }
+  }
+  getSubscription();
 
   navigator.permissions.query({name: 'notifications'}).then(permission => {
     setNotificationsEnabled(permission.state === 'granted');
   }).catch(e => console.log(e));
+
+  const VAPID_PUBLIC_KEY = 'BHa2cccM28C-AGTVTt4I4ADnwBiOzlz3RgwUdFOXHNAh3SymMgzx51s8uUPx2DhTBVpbPx-uTx7dHcDGCpqPaqI';
+  async function subscribeToPush() {
+    subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
+    });
+    postToServer('https://lovely-spicy-card.glitch.me/add-subscription', subscription);
+    setNotificationsSubscribed(true);
+  }
+
+  async function unsubscribeToPush() {
+    fetch('https://lovely-spicy-card.glitch.me/remove-subscription', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({endpoint: subscription.endpoint})
+    });
+    const unsubscribed = await subscription.unsubscribe();
+    if (unsubscribed) {
+      console.info('Successfully unsubscribed from push notifications.');
+      setNotificationsSubscribed(false);
+    }
+  }
 
   return (
     <IonPage>
@@ -125,9 +152,12 @@ const Notifications: React.FC = () => {
         </p>
 
         <IonButton onClick={enableNotifications} disabled={notificationsEnabled}>{
-          notificationsEnabled ? 'Noficications Enabled' : "Enable Notifications" }</IonButton>
+          notificationsEnabled ? 'Notifications Enabled' : "Enable Notifications" }</IonButton>
         <IonButton onClick={displayNotification}>Display Notification</IonButton>
-        <IonButton onClick={subscribeToPush}>Subscribe To Push Notification</IonButton>
+        {notificationsSubscribed ?
+            <IonButton onClick={unsubscribeToPush}>Unsubscribe From Push Notification</IonButton>
+            : <IonButton onClick={subscribeToPush}>Subscribe To Push Notification</IonButton>
+        }
       </IonContent>
       <Footer prev='/profile/voicerecording' next='/profile/complete'></Footer>
     </IonPage>
