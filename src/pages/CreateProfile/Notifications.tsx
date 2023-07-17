@@ -4,19 +4,19 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 } from '@ionic/react';
 import Footer from '../../components/Footer';
 
-//The spec: https://notifications.spec.whatwg.org/
+// The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: 'you\'ve been cat called',
   icon: '/assets/cats/esteban.jpg',
   badge: '/assets/icon/icon.png',
   image: '/assets/cats/esteban.jpg',
   click_action: '/tab',
-  //Keeps the notification displayed
+  // Keeps the notification displayed
   requireInteraction: false,
-  //dont play a sound
+  // do NOT play a sound
   silent: false,
-  //Unique identifier for this notification
-  tag: 'unique-identifier-idnumber-3',
+  // Unique identifier for this notification
+  tag: 'unique-identifier-idnumber-0',
   // Actions only work from ServiceWorkers...
   // actions: [
   //   {
@@ -112,13 +112,15 @@ const Notifications: React.FC = () => {
       <IonContent class="ion-padding" id="main-content">
         <h1>Notifications</h1>
         <ul>
-          <li><a href="https://web.dev/push-notifications-display-a-notification/" rel="noreferrer" target="_blank">Displaying a Notification</a></li>
-          <li><a href="https://flaviocopes.com/push-api/" rel="noreferrer" target="_blank">Notifications on Mac</a></li>
-          <li><a href="https://web.dev/push-notifications-server-codelab/" rel="noreferrer" target="_blank">Push Notifications Server Codelab</a></li>
+          <li><a href="https://web.dev/push-notifications-display-a-notification/" rel="noreferrer" target="_blank">web.dev: Displaying a Notification</a></li>
+          <li><a href="https://flaviocopes.com/push-api/" rel="noreferrer" target="_blank">The Push API Guide (notifications on your laptop)</a></li>
+          <li><a href="https://web.dev/push-notifications-server-codelab/" rel="noreferrer" target="_blank">web.dev Codelab: Build a push notification server</a></li>
         </ul>
 
         <p>
-          Let's make sure we can notify our cats of potentional mates. First, play around with displaying notifications and the different options they offer. Then move on to the server codelab.
+          Let's make sure we can notify our cats of potential mates. First, play around with displaying notifications and the different options they offer. Then move on to the server codelab.
+        </p>
+        <p>
           After the server push codelab, we'll hook this page the server codelab and get a notification from our server.
         </p>
 
