@@ -16,57 +16,15 @@ const Camera: React.FC = () => {
   const imageFlippedRef = useRef(false);
 
   const flipImage = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    context.translate(canvas.width, 0);
-    context.scale(-1, 1);
+    // TODO: code to flip the image
   }
 
   const takePhoto = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    const player = videoRef.current;
-
-    context.drawImage(player, 0, 0, canvas.width, canvas.height);
-    setPhoto(canvas.toDataURL("image/png"));
+    // TODO: code to take the photo
   }
 
   useEffect(() => {
-    const startStreaming = () => {
-      navigator.mediaDevices
-        .getUserMedia({ video: {
-          width: { min: 640, ideal: 960 },
-          height: { min: 400, ideal: 540 },
-          aspectRatio: { ideal: 1.7777777778 },
-        }, audio: false })
-        .then((stream) => {
-          if (videoRef.current) { // this check is to prevent applying the src to an old, removed video tag when navigating away while the video player is initializing
-            mediaStreamRef.current = stream;
-            videoRef.current.srcObject = stream;
-          } else {
-            stopStreaming();
-          }
-        });
-    }
-
-    const stopStreaming = () => {
-      if (mediaStreamRef.current) {
-        mediaStreamRef.current.getVideoTracks().forEach(track => track.stop());
-      }
-    }
-
-    if(!imageFlippedRef.current) {
-      flipImage();
-      imageFlippedRef.current = true;
-    }
-
-    if (!photo) {
-      startStreaming();
-    } else {
-      stopStreaming(true);
-    }
-
-    return stopStreaming;
+    // TODO: code to start/stop a live view of the webcam
   }, [photo]);
 
   return (

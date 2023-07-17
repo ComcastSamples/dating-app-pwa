@@ -61,14 +61,11 @@ async function postToServer(url, data) {
 }
 
 function enableNotifications() {
-  Notification.requestPermission().then((result) => {
-    console.log(result);
-  });
+  // TODO: code to enable notifications
 }
 
 async function displayNotification() {
-  const registration = await navigator.serviceWorker.getRegistration();
-  registration.showNotification('Permission Granted!', MyNotification);
+  // TODO: code to display MyNotification (local notification)
 }
 
 /*
@@ -88,41 +85,23 @@ const Notifications: React.FC = () => {
   let subscription = null;
 
   async function getSubscription() {
-    registration = await navigator.serviceWorker.getRegistration();
-    subscription = await registration.pushManager.getSubscription();
-    if (subscription && subscription.endpoint) {
-      setNotificationsSubscribed(true);
-    }
+    // TODO: code to set the registration & subscription variables and call setNotificationsSubscribed(true) if necessary
   }
   getSubscription();
 
-  navigator.permissions.query({name: 'notifications'}).then(permission => {
-    setNotificationsEnabled(permission.state === 'granted');
-  }).catch(e => console.log(e));
+  // TODO: code to get the 'notifications' permission and call setNotificationsEnabled appropriately based on that
 
-  const VAPID_PUBLIC_KEY = 'BHa2cccM28C-AGTVTt4I4ADnwBiOzlz3RgwUdFOXHNAh3SymMgzx51s8uUPx2DhTBVpbPx-uTx7dHcDGCpqPaqI';
+
+  // TODO: set APID_PUBLIC_KEY based on https://web.dev/push-notifications-server-codelab/#authentication
+  const VAPID_PUBLIC_KEY = 'YOUR-VALUE';
   async function subscribeToPush() {
-    subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
-    });
-    postToServer('https://lovely-spicy-card.glitch.me/add-subscription', subscription);
-    setNotificationsSubscribed(true);
+    // TODO: code to subscribe to push notifications via your glitch server's /add-subscription endpoint
+    // TODO: call setNotificationsSubscribed(true) if successful
   }
 
   async function unsubscribeToPush() {
-    fetch('https://lovely-spicy-card.glitch.me/remove-subscription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({endpoint: subscription.endpoint})
-    });
-    const unsubscribed = await subscription.unsubscribe();
-    if (unsubscribed) {
-      console.info('Successfully unsubscribed from push notifications.');
-      setNotificationsSubscribed(false);
-    }
+    // TODO: code to unsubscribe from push notifications via your glitch server's /remove-subscription endpoint
+    // TODO: call setNotificationsSubscribed(false) if successful
   }
 
   return (

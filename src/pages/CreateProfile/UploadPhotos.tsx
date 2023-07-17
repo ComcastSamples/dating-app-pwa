@@ -10,35 +10,9 @@ import Footer from '../../components/Footer';
 
 const UploadPhotos: React.FC = () => {
   let [photos, setPhotos] = useLocalStorageState('photos', { defaultValue: []});
-  let filesToProcess = useRef([]);
-
-  const readFile = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setPhotos(photos.concat(e.target.result));
-    };
-    reader.readAsDataURL(file);
-  }
-
-  const processFiles = () => {
-    if (filesToProcess.current.length > 0) {
-      let nextFile = filesToProcess.current.shift();
-      readFile(nextFile);
-    }
-  }
-
-  processFiles();
 
   const handleFileUpload = event => {
-    let fileList = event.target.files;
-    if (fileList && fileList.length > 0) {
-      // yep we're for looping, the Files are a FileList that is NOT an Array
-      for (let i = 0; i < fileList.length; i++) {
-        let file = fileList[i];
-        filesToProcess.current.push(file);
-      }
-      processFiles();
-    }
+    // TODO: handle the uploading of files
   }
 
   const photoMarkup = photos.map((photo, index) => <img alt="your uploaded pics" className={styles.photoThumb} src={photo} key={index} />);

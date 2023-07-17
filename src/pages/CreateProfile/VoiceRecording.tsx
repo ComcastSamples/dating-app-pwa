@@ -24,47 +24,22 @@ const VoiceRecording: React.FC = () => {
 
   useEffect(() => {
     if(recordingInProgress){
-      timerRef.current = setTimeout(() => {
-        setRecordingTime(recordingTime + 1);
-      }, 1000);
+      // TODO: implement a timer when recording is in progress
     }
   }, [recordingTime, recordingInProgress]);
 
   const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4';
-  const handleSuccess = function(stream:any) {
-    const recordedChunks = [];
-    setRecordingInProgress(true);
-
-    mediaRecorder.current = new MediaRecorder(stream, { mimeType });
-
-    mediaRecorder.current.addEventListener('dataavailable', function(e) {
-      if (e.data.size > 0) recordedChunks.push(e.data);
-    });
-
-    mediaRecorder.current.addEventListener('stop', function() {
-      let r = new Blob(recordedChunks);
-      blobToBase64(r).then(result => {
-        setRecording(result);
-      });
-    });
-
-    mediaRecorder.current.start();
-  };
 
   function clearRecording() {
-    setRecording('');
+    // TODO: code to clear saved recording
   }
 
   function stopRecording() {
-    mediaRecorder.current.stop();
-    setRecordingInProgress(false);
-    setRecordingTime(0);
-    clearTimeout(timerRef.current);
+    // TODO: code to stop recording
   }
 
   function startRecording() {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-      .then(handleSuccess);
+    // TODO: code to start recording
   }
 
   return (

@@ -10,13 +10,8 @@ import Footer from '../../components/Footer';
 
 function getLocation() {
   return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject('Geolocation is not supported by your browser');
-    } else {
-      navigator.geolocation.getCurrentPosition((g => {
-        resolve(convertToLocation(g.coords.latitude, g.coords.longitude));
-      }), reject);
-    }
+    // TODO: code to check for Geolocation API and leverage it to get the current position
+    reject('TODO: implement Geolocation module'); // replace this with your code
   });
 }
 

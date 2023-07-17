@@ -10,17 +10,7 @@ const Permissions: React.FC = () => {
   let [microphoneStatus, setMicrophoneStatus] = useState('');
 
   useEffect(() => {
-    navigator.permissions.query({name: 'camera' as PermissionName}).then(permission => {
-      setCameraStatus(permission.state);
-    });
-
-    navigator.permissions.query({name: 'geolocation'}).then(permission => {
-      setGeoStatus(permission.state);
-    });
-
-    navigator.permissions.query({name: 'microphone' as PermissionName}).then(permission => {
-      setMicrophoneStatus(permission.state);
-    });
+    // TODO: code to set status for camera, geolocation, and microphone permissions
   }, [])
 
   return (
