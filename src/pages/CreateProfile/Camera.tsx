@@ -13,7 +13,6 @@ const Camera: React.FC = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const mediaStreamRef = useRef(null);
-  const imageFlippedRef = useRef(false);
 
   const flipImage = () => {
     // TODO: code to flip the image
@@ -56,7 +55,7 @@ const Camera: React.FC = () => {
 
         <div className={styles.imgContainer}>
           <video id="video" autoPlay ref={videoRef} className={styles.video} hidden={!!photo} playsInline></video>
-          <canvas id="canvas" ref={canvasRef} width="960" height="540" hidden></canvas>
+          <canvas id="canvas" ref={canvasRef} hidden></canvas>
           <img alt="" id="photo" src={photo} className={styles.photo} hidden={!photo} />
         </div>
         <div className="ion-text-center">
