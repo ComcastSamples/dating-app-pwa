@@ -1,11 +1,4 @@
 const cacheName = "datingapp-v1";
-// TODO: code to handle fetch requests
+// TODO: code to handle fetch requests (Service Workers, Module 1)
 
-self.addEventListener('push', (event) => {
-  let notification = event.data.json();
-  self.registration.showNotification(
-    notification.title || 'Hello There',
-    notification.options
-  );
-});
-
+// TODO: code to handle push notifications (Notifications, Module 7)
