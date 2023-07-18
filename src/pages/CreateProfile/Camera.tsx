@@ -64,7 +64,7 @@ const Camera: React.FC = () => {
     if (!photo) {
       startStreaming();
     } else {
-      stopStreaming(true);
+      stopStreaming();
     }
 
     return stopStreaming;
