@@ -9,3 +9,14 @@ ion-content::part(background) {
   background: fixed #fff url("../images/finge-bg.png") center bottom -160px no-repeat;
 }
 
+@media (prefers-color-scheme: dark) {
+  /*
+   * Dark Mode
+   * -------------------------------------------
+   */
+
+  ion-content::part(background) {
+    background-color: #011523;
+    background-image: url("../images/finge-bg-dark.png");
+  }
+}
