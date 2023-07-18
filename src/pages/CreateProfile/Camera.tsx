@@ -13,7 +13,6 @@ const Camera: React.FC = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const mediaStreamRef = useRef(null);
-  const imageFlippedRef = useRef(false);
 
   const flipImage = () => {
     const canvas = canvasRef.current;
@@ -27,8 +26,15 @@ const Camera: React.FC = () => {
     const context = canvas.getContext('2d');
     const player = videoRef.current;
 
-    context.drawImage(player, 0, 0, canvas.width, canvas.height);
-    setPhoto(canvas.toDataURL("image/png"));
+    // Set canvas size
+    canvas.width = player.offsetWidth;
+    canvas.height = player.offsetHeight;
+    flipImage();
+
+    setTimeout(() => {
+      context.drawImage(player, 0, 0, canvas.width, canvas.height);
+      setPhoto(canvas.toDataURL("image/png"));
+    }, 1);
   }
 
   useEffect(() => {
@@ -53,11 +59,6 @@ const Camera: React.FC = () => {
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getVideoTracks().forEach(track => track.stop());
       }
-    }
-
-    if(!imageFlippedRef.current) {
-      flipImage();
-      imageFlippedRef.current = true;
     }
 
     if (!photo) {
@@ -93,7 +94,7 @@ const Camera: React.FC = () => {
 
         <div className={styles.imgContainer}>
           <video id="video" autoPlay ref={videoRef} className={styles.video} hidden={!!photo} playsInline></video>
-          <canvas id="canvas" ref={canvasRef} width="960" height="540" hidden></canvas>
+          <canvas id="canvas" ref={canvasRef} hidden></canvas>
           <img alt="" id="photo" src={photo} className={styles.photo} hidden={!photo} />
         </div>
         <div className="ion-text-center">
