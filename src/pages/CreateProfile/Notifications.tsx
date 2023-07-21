@@ -4,6 +4,9 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 } from '@ionic/react';
 import Footer from '../../components/Footer';
 
+// Update this with your VAPID Public Key from running npm run keys:
+const VAPID_PUBLIC_KEY = 'BEeNZx_2ZsiXd-qukDs1tnDl3L-NIQ9I8l2UgyoHGSJ61Jaq_6bWRwBzxdpa9EW_vqHCDu4XGigqP1oWlpjO_9o';
+
 // The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: 'you\'ve been cat called',
@@ -81,9 +84,6 @@ const Notifications: React.FC = () => {
 
   // TODO: code to get the 'notifications' permission and call setNotificationsEnabled appropriately based on that
 
-
-  // TODO: set APID_PUBLIC_KEY based on https://web.dev/push-notifications-server-codelab/#authentication
-  const VAPID_PUBLIC_KEY = 'YOUR-VALUE';
   async function subscribeToPush() {
     // TODO: code to subscribe to push notifications via your glitch server's /add-subscription endpoint
     // TODO: call setNotificationsSubscribed(true) if successful

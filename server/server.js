@@ -15,8 +15,8 @@ const db = new LowSync(new JSONFileSync(dbFile), {
 });
 
 const vapidDetails = {
-  publicKey: 'BCoBKAswGZC_FMEkS48TtAm3A7NKF8a0PykE5Q5Tm07aZoicgVOhN-fWwFS-0y8jBnGust4zHCY-nlqkMZlSOJw',
-  privateKey: 'ZWGaIoCRl_phOZSUNQszDOBPMyYqLeSLN2QCFiqTDXs',
+  publicKey: process.env.VAPID_PUBLIC_KEY,
+  privateKey: process.env.VAPID_PRIVATE_KEY,
   subject: 'mailto:test@test.com'
 };
 
@@ -93,9 +93,11 @@ app.post('/notify-all', (request, response) => {
 });
 
 app.listen(3001, () => {
-  console.log(`Open http://localhost:3001/ to confirm the Push Notification server is up and running.
+  console.log(`Your Push Notifications Server is up and running 🚀
 
-You should see a page with the title of "Push Notifications Test Client"
+You can view the Codelab instructions now at http://localhost:3001/codelab/
+
+A page to locally test the Push Notifications capabilities is available at http://localhost:3001/
 
 Note this server is separate from the web server in the root of the project that runs our client code at http://localhost:3000/
 `);

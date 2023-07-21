@@ -1,7 +1,5 @@
 /* Push notification logic. */
 
-const VAPID_PUBLIC_KEY = 'BCoBKAswGZC_FMEkS48TtAm3A7NKF8a0PykE5Q5Tm07aZoicgVOhN-fWwFS-0y8jBnGust4zHCY-nlqkMZlSOJw';
-
 async function registerServiceWorker() {
   await navigator.serviceWorker.register('./service-worker.js');
   updateUI();
@@ -32,7 +30,7 @@ async function subscribeToPush() {
   const registration = await navigator.serviceWorker.getRegistration();
   const subscription = await registration.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
+    applicationServerKey: urlB64ToUint8Array(window.VAPID_PUBLIC_KEY)
   });
   postToServer('/add-subscription', subscription);
   updateUI();
