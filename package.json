@@ -48,7 +48,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "node server.js",
+    "start:server": "node server/server.js",
     "keys": "npx web-push generate-vapid-keys",
     "deploy": "echo 'finge.lol' > ./build/CNAME && gh-pages -d build",
     "build": "react-scripts build",
