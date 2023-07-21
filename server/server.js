@@ -4,9 +4,16 @@ import bodyparser from 'body-parser';
 import { LowSync } from 'lowdb';
 import { JSONFileSync } from 'lowdb/node';
 
-const db = new LowSync(new JSONFileSync('db.json'), {
+// https://github.com/typicode/lowdb#usage
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const dbFile = join(__dirname, 'db.json')
+
+const db = new LowSync(new JSONFileSync(dbFile), {
   subscriptions: []
 });
+
 const vapidDetails = {
   publicKey: 'BCoBKAswGZC_FMEkS48TtAm3A7NKF8a0PykE5Q5Tm07aZoicgVOhN-fWwFS-0y8jBnGust4zHCY-nlqkMZlSOJw',
   privateKey: 'ZWGaIoCRl_phOZSUNQszDOBPMyYqLeSLN2QCFiqTDXs',
@@ -45,7 +52,7 @@ function sendNotifications(subscriptions) {
 
 const app = express();
 app.use(bodyparser.json());
-app.use(express.static('public'));
+app.use(express.static(join(__dirname, 'static')));
 
 app.post('/add-subscription', (request, response) => {
   console.log(`Subscribing ${request.body.endpoint}`);
@@ -85,10 +92,11 @@ app.post('/notify-all', (request, response) => {
   }
 });
 
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
+app.listen(3001, () => {
+  console.log(`Open http://localhost:3001/ to confirm the Push Notification server is up and running.
 
-const listener = app.listen(3001, () => {
-  console.log(`Open http://localhost:3001/push.html`);
+You should see a page with the title of "Push Notifications Test Client"
+
+Note this server is separate from the web server in the root of the project that runs our client code at http://localhost:3000/
+`);
 });
