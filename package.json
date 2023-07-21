@@ -19,6 +19,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "history": "^4.9.0",
@@ -48,8 +49,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "node server/server.js",
-    "keys": "npx web-push generate-vapid-keys",
+    "start:server": "node --require dotenv/config server/server.js",
+    "keys": "node server/vapid-setup.js",
     "deploy": "echo 'finge.lol' > ./build/CNAME && gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
