@@ -68,16 +68,6 @@ async function displayNotification() {
   // TODO: code to display MyNotification (local notification)
 }
 
-/*
-Enable CORS on Codelab - Place this near top of the Server Codelab code after app is declared
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-*/
-
 const Notifications: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [notificationsSubscribed, setNotificationsSubscribed] = useState(false);
