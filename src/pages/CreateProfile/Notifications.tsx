@@ -72,6 +72,12 @@ function enableNotifications() {
 async function displayNotification() {
   const registration = await navigator.serviceWorker.getRegistration();
   registration.showNotification('Permission Granted!', MyNotification);
+
+   // @ts-ignore
+  if (navigator.setAppBadge) {
+    // @ts-ignore
+    navigator.setAppBadge(23);
+  }
 }
 
 const Notifications: React.FC = () => {
