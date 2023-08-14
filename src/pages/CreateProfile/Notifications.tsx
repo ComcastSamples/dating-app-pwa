@@ -4,6 +4,9 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 } from '@ionic/react';
 import Footer from '../../components/Footer';
 
+// Update this with your VAPID Public Key from running npm run keys:
+const VAPID_PUBLIC_KEY = 'BEeNZx_2ZsiXd-qukDs1tnDl3L-NIQ9I8l2UgyoHGSJ61Jaq_6bWRwBzxdpa9EW_vqHCDu4XGigqP1oWlpjO_9o';
+
 // The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: 'you\'ve been cat called',
@@ -71,16 +74,6 @@ async function displayNotification() {
   registration.showNotification('Permission Granted!', MyNotification);
 }
 
-/*
-Enable CORS on Codelab - Place this near top of the Server Codelab code after app is declared
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-*/
-
 const Notifications: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [notificationsSubscribed, setNotificationsSubscribed] = useState(false);
@@ -100,18 +93,17 @@ const Notifications: React.FC = () => {
     setNotificationsEnabled(permission.state === 'granted');
   }).catch(e => console.log(e));
 
-  const VAPID_PUBLIC_KEY = 'BHa2cccM28C-AGTVTt4I4ADnwBiOzlz3RgwUdFOXHNAh3SymMgzx51s8uUPx2DhTBVpbPx-uTx7dHcDGCpqPaqI';
   async function subscribeToPush() {
     subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
     });
-    postToServer('https://lovely-spicy-card.glitch.me/add-subscription', subscription);
+    postToServer('/add-subscription', subscription);
     setNotificationsSubscribed(true);
   }
 
   async function unsubscribeToPush() {
-    fetch('https://lovely-spicy-card.glitch.me/remove-subscription', {
+    fetch('/remove-subscription', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

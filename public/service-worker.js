@@ -4,7 +4,9 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(caches.open(cacheName).then((cache) => {
     // Go to the network first
     return fetch(event.request.url).then((fetchedResponse) => {
-      cache.put(event.request, fetchedResponse.clone());
+      if (event.request.method === 'GET') {
+        cache.put(event.request, fetchedResponse.clone());
+      }
 
       return fetchedResponse;
     }).catch(() => {
