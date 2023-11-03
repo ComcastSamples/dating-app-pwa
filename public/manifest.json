@@ -1,6 +1,7 @@
 {
   "short_name": "Finge",
   "name": "Finge: Dating app for Felines",
+  "description": "A Progressive Web App workshop teaching you about the best the web has to offer as an alternative to native apps.",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
