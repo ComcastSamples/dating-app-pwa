@@ -58,13 +58,12 @@ const VoiceRecording: React.FC = () => {
         <ul>
           <li><a href="https://web.dev/patterns/media/microphone-record/" rel="noreferrer" target="_blank">web.dev: How to record audio from the user's microphone</a></li>
           <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio" rel="noreferrer" target="_blank">MDN: &lt;audio&gt;: The Embed Audio element</a></li>
-          <li><a href="https://learnersbucket.com/examples/interview/increment-counter-component-in-react/" rel="noreferrer" target="_blank">Increment counter component in React</a></li>
         </ul>
         <p>
-          Record audio from the mic. Display a timer while recording the audio & save it once the recording stops.
+          Record audio from the mic. Once the recording is saved, allow the audio to be played back and also have a button to clear the audio recording.
         </p>
         <p>
-          Once the recording is saved, allow the audio to be played back and also have a button to clear the audio recording.
+          If you still have time, display a timer while recording the audio. This <a href="https://learnersbucket.com/examples/interview/increment-counter-component-in-react/" rel="noreferrer" target="_blank">Increment counter component in React</a> article may help with that.
         </p>
         <div className={styles.imgContainer}>
           { recording &&

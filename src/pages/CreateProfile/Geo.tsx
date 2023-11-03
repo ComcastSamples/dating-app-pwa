@@ -59,6 +59,9 @@ const Login: React.FC = () => {
             Use the provided <code>convertToLocation</code> function to display city and state in a <code>setLocation</code> function that leverages <a href="https://www.npmjs.com/package/use-local-storage-state" rel="noreferrer" target="_blank"><code>use-local-storage-state</code></a> React <a href="https://react.dev/learn/reusing-logic-with-custom-hooks" rel="noreferrer" target="_blank">Custom Hook</a> so we can use it later for the ViewProfile page.
           </p>
           <p>
+            If the location displays "Unknown", it is possible you may need to update your operating system's settings to allow your browser to access your location.
+          </p>
+          <p>
             Also, be sure to enter your name for the profile.
           </p>
           <IonItem>
