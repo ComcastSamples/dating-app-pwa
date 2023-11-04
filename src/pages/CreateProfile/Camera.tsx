@@ -42,11 +42,16 @@ const Camera: React.FC = () => {
         <h1>Smile! 📸</h1>
         <ul>
           <li><a href="https://web.dev/media-capturing-images/#access-the-camera-interactively" rel="noreferrer" target="_blank">web.dev: Capturing an image from the user</a></li>
-          <li><a href="https://christianheilmann.com/2013/07/19/flipping-the-image-when-accessing-the-laptop-camera-with-getusermedia/" rel="noreferrer" target="_blank">Flipping the image when accessing the laptop camera with getUserMedia</a></li>
           <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Taking_still_photos" rel="noreferrer" target="_blank">MDN: Taking still photos with getUserMedia()</a></li>
         </ul>
         <p>
-          Follow the first article to learn how to capture a photo from your camera. Unfortunately, we're on laptops and input type='file' won't work. Make sure you also update stopStreaming so the camera turns off when we're done. And you may want to flip the image...
+          Follow the first article to learn how to capture a photo from your camera. Note that unfortunately since we're on laptops, <code>input type='file'</code> won't work. Your goal is to at least show the camera's video feed, capture a photo, display that photo, and provide an option to clear the photo.
+        </p>
+        <p>
+          Note if you're testing on Microsoft Edge, your phone may be prompted for the camera instead of your laptop.
+        </p>
+        <p>
+          If you complete those items and still have time, you can also try to <a href="https://christianheilmann.com/2013/07/19/flipping-the-image-when-accessing-the-laptop-camera-with-getusermedia/" rel="noreferrer" target="_blank">flip the image so it is a mirror image</a>, and update <code>stopStreaming</code> so the camera turns off when you've captured an image or you navigate away from the page. <a href="https://react.dev/reference/react/useEffect#parameters" rel="noreferrer" target="_blank">React's useEffect cleanup function</a> can be helpful for that.
         </p>
 
         <div className={styles.imgContainer}>

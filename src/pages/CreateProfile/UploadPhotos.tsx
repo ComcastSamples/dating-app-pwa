@@ -32,10 +32,13 @@ const UploadPhotos: React.FC = () => {
           <h1>Candid Uploads 🎞️</h1>
           <ul>
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications" rel="noreferrer" target="_blank">MDN: Using files from web applications</a></li>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture" rel="noreferrer" target="_blank">MDN: Input Capture</a></li>
           </ul>
           <p>
-            Upload photos and use the File API to render them to the screen.
+            Upload a single photo and use the File API to render it to the screen.<br />
+            If you still have time, try supporting uploading multiple photos at once.
+          </p>
+          <p>
+            For test images, see the <code>public/assets/cats/</code> folder of this project.
           </p>
           <IonItem>
             <IonLabel>Upload Photo(s):</IonLabel>
