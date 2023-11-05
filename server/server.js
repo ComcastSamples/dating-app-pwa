@@ -95,7 +95,9 @@ app.post('/notify-all', (request, response) => {
 app.listen(3001, () => {
   console.log(`Your Push Notifications Server is up and running 🚀
 
-You can view the Codelab instructions now at http://localhost:3001/codelab/
+The original Codelab instructions are available at 
+https://web.dev/articles/push-notifications-server-codelab
+https://codelabs.developers.google.com/codelabs/push-notifications
 
 A page to locally test the Push Notifications capabilities is available at http://localhost:3001/
 
