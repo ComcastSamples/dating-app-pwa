@@ -25,7 +25,7 @@ From the _root_ (not this folder) of this repo:
     npm run start:server
     ```
 
-This should start up a server at http://localhost:3001/
+This should start up a server at http://localhost:3001/ and there is a proxy in place for requests to hit the server automatically.
 
 ### License Info
 

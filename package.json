@@ -49,6 +49,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:both": "npm start && npm run start:server",
     "start:server": "node --require dotenv/config server/server.js",
     "keys": "node server/vapid-setup.js",
     "deploy": "echo 'finge.lol' > ./build/CNAME && gh-pages -d build",
@@ -56,6 +57,7 @@
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

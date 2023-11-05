@@ -21,6 +21,7 @@ try {
   fs.writeFileSync(envFilename, `VAPID_PUBLIC_KEY="${vapidKeys.publicKey}"
 VAPID_PRIVATE_KEY="${vapidKeys.privateKey}"`);
   console.log(`${envFilename} has been saved with your VAPID public & private keys.`);
+  console.log(`Be sure to restart your server to pick up the changes!`);
 } catch (err) {
   console.log("Error:", err);
 }
