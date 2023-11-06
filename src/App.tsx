@@ -20,6 +20,7 @@ import UploadPhotos from './pages/CreateProfile/UploadPhotos';
 import VoiceRecording from './pages/CreateProfile/VoiceRecording';
 import Geo from './pages/CreateProfile/Geo';
 import Notifications from './pages/CreateProfile/Notifications';
+import Push from './pages/CreateProfile/Push';
 import ViewProfile from './pages/ViewProfile';
 import Cats from './pages/Cats';
 import Settings from './pages/Settings';
@@ -110,6 +111,9 @@ const App: React.FC = () => {
         </Route>
         <Route exact path="/profile/notifications">
           <Notifications />
+        </Route>
+        <Route exact path="/profile/push">
+          <Push />
         </Route>
         <Menu></Menu>
 

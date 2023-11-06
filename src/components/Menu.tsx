@@ -41,6 +41,10 @@ function Menu() {
             <IonChip slot="start">7</IonChip>
             <IonLabel>Notifications</IonLabel>
           </IonItem>
+          <IonItem routerLink="/profile/push">
+            <IonChip slot="start">8</IonChip>
+            <IonLabel>Push</IonLabel>
+          </IonItem>
           {profileComplete &&
             <IonItem routerLink="/viewprofile">
               <IonChip slot="start">*</IonChip>

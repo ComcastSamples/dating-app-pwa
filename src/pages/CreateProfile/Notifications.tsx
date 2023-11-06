@@ -4,9 +4,6 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 } from '@ionic/react';
 import Footer from '../../components/Footer';
 
-// Update this with your VAPID Public Key from running npm run keys:
-const VAPID_PUBLIC_KEY = 'BEeNZx_2ZsiXd-qukDs1tnDl3L-NIQ9I8l2UgyoHGSJ61Jaq_6bWRwBzxdpa9EW_vqHCDu4XGigqP1oWlpjO_9o';
-
 // The spec: https://notifications.spec.whatwg.org/
 const MyNotification = {
   body: 'you\'ve been cat called',
@@ -36,33 +33,6 @@ const MyNotification = {
   // ],
 };
 
-/* Utility functions. */
-// Convert a base64 string to Uint8Array.
-// Must do this so the server can understand the VAPID_PUBLIC_KEY.
-const urlB64ToUint8Array = (base64String) => {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-};
-
-async function postToServer(url, data) {
-  let response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  console.log(response);
-}
-
 function enableNotifications() {
   Notification.requestPermission().then((result) => {
     console.log(result);
@@ -75,6 +45,7 @@ async function displayNotification() {
 
    // @ts-ignore
   if (navigator.setAppBadge) {
+    // Set a banner on phones to show we have messages
     // @ts-ignore
     navigator.setAppBadge(23);
   }
@@ -82,46 +53,10 @@ async function displayNotification() {
 
 const Notifications: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
-  const [notificationsSubscribed, setNotificationsSubscribed] = useState(false);
-  let registration = null;
-  let subscription = null;
-
-  async function getSubscription() {
-    registration = await navigator.serviceWorker.getRegistration();
-    subscription = await registration.pushManager.getSubscription();
-    if (subscription && subscription.endpoint) {
-      setNotificationsSubscribed(true);
-    }
-  }
-  getSubscription();
 
   navigator.permissions.query({name: 'notifications'}).then(permission => {
     setNotificationsEnabled(permission.state === 'granted');
   }).catch(e => console.log(e));
-
-  async function subscribeToPush() {
-    subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
-    });
-    postToServer('/add-subscription', subscription);
-    setNotificationsSubscribed(true);
-  }
-
-  async function unsubscribeToPush() {
-    fetch('/remove-subscription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({endpoint: subscription.endpoint})
-    });
-    const unsubscribed = await subscription.unsubscribe();
-    if (unsubscribed) {
-      console.info('Successfully unsubscribed from push notifications.');
-      setNotificationsSubscribed(false);
-    }
-  }
 
   return (
     <IonPage>
@@ -139,25 +74,19 @@ const Notifications: React.FC = () => {
         <ul>
           <li><a href="https://web.dev/push-notifications-display-a-notification/" rel="noreferrer" target="_blank">web.dev: Displaying a Notification</a></li>
           <li><a href="https://flaviocopes.com/push-api/" rel="noreferrer" target="_blank">The Push API Guide (notifications on your laptop)</a></li>
-          <li><a href="https://web.dev/push-notifications-server-codelab/" rel="noreferrer" target="_blank">web.dev Codelab: Build a push notification server</a></li>
         </ul>
 
         <p>
-          Let's make sure we can notify our cats of potential mates. First, play around with displaying notifications and the different options they offer. Then move on to the server codelab.
-        </p>
-        <p>
-          After the server push codelab, we'll hook this page the server codelab and get a notification from our server.
+          Let's make sure we can notify our cats of potential mates. 
+          First, play around with displaying notifications and the different options they offer. 
+          Then move on to the server push notifications.
         </p>
 
         <IonButton onClick={enableNotifications} disabled={notificationsEnabled}>{
           notificationsEnabled ? 'Notifications Enabled' : "Enable Notifications" }</IonButton>
         <IonButton onClick={displayNotification}>Display Notification</IonButton>
-        {notificationsSubscribed ?
-            <IonButton onClick={unsubscribeToPush}>Unsubscribe From Push Notification</IonButton>
-            : <IonButton onClick={subscribeToPush}>Subscribe To Push Notification</IonButton>
-        }
       </IonContent>
-      <Footer prev='/profile/voicerecording' next='/profile/complete'></Footer>
+      <Footer prev='/profile/voicerecording' next='/profile/push'></Footer>
     </IonPage>
   );
 };
