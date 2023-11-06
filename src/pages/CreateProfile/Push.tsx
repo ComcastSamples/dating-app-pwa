@@ -5,7 +5,7 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 import Footer from '../../components/Footer';
 
 // Update this with your VAPID Public Key from running npm run keys:
-const VAPID_PUBLIC_KEY = 'BEeNZx_2ZsiXd-qukDs1tnDl3L-NIQ9I8l2UgyoHGSJ61Jaq_6bWRwBzxdpa9EW_vqHCDu4XGigqP1oWlpjO_9o';
+const VAPID_PUBLIC_KEY = 'BDSSvm8uKiXgnPHw6AFVeSNjSRw7ZPrpN8YxvTr6wdNWiHwQGTP84NNAxg6ZVjICFdSmaIWdoMAqtb-CV5NN44g';
 
 /* Utility functions. */
 // Convert a base64 string to Uint8Array.
@@ -83,6 +83,13 @@ const Notifications: React.FC = () => {
     }
   }
 
+  async function notifyMe() {
+    const registration = await navigator.serviceWorker.getRegistration();
+    const subscription = await registration.pushManager.getSubscription();
+    postToServer('/notify-me', { endpoint: subscription.endpoint });
+  }
+  
+
   return (
     <IonPage>
       <IonHeader>
@@ -111,6 +118,9 @@ const Notifications: React.FC = () => {
         {notificationsSubscribed ?
             <IonButton onClick={unsubscribeToPush}>Unsubscribe From Push Notification</IonButton>
             : <IonButton onClick={subscribeToPush}>Subscribe To Push Notification</IonButton>
+        }
+        {notificationsSubscribed &&
+          <IonButton onClick={notifyMe}>Send Push Notification</IonButton>
         }
       </IonContent>
       <Footer prev='/profile/notifications' next='/profile/complete'></Footer>

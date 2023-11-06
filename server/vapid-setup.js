@@ -9,7 +9,7 @@ console.log(`
 VAPID Public Key:
 ${vapidKeys.publicKey}
 
-Be sure to paste that into the appropriate place in src/pages/CreateProfile/Notifications.tsx
+Be sure to paste that into the appropriate place in src/pages/CreateProfile/Push.tsx
 
 =======================================
 `);
