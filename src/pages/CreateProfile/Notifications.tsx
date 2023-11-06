@@ -66,7 +66,7 @@ const Notifications: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Notifying our Cats</IonTitle>
-          <IonChip slot="end" disabled>7 of 7</IonChip>
+          <IonChip slot="end" disabled>7 of 8</IonChip>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding" id="main-content">

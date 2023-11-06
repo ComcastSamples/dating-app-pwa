@@ -78,7 +78,7 @@ const Camera: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Get ready to capture the cattitude</IonTitle>
-          <IonChip slot="end" disabled>4 of 7</IonChip>
+          <IonChip slot="end" disabled>4 of 8</IonChip>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding" id="main-content">

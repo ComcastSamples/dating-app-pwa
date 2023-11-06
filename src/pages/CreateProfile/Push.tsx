@@ -97,12 +97,12 @@ const Notifications: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>Notifying our Cats</IonTitle>
-          <IonChip slot="end" disabled>7 of 7</IonChip>
+          <IonTitle>Notifying our Cats Remotely</IonTitle>
+          <IonChip slot="end" disabled>8 of 8</IonChip>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding" id="main-content">
-        <h1>Notifications</h1>
+        <h1>Notifications - Push</h1>
         <ul>
           <li><a href="https://web.dev/push-notifications-server-codelab/" rel="noreferrer" target="_blank">web.dev Codelab: Build a push notification server</a></li>
         </ul>

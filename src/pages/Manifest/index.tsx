@@ -22,7 +22,7 @@ const ManifestWelcome: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Make PWA Installable</IonTitle>
-          <IonChip slot="end" disabled>1 of 7</IonChip>
+          <IonChip slot="end" disabled>1 of 8</IonChip>
         </IonToolbar>
       </IonHeader>
       <Menu></Menu>

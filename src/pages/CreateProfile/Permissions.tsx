@@ -31,7 +31,7 @@ const Permissions: React.FC = () => {
             <IonMenuButton></IonMenuButton>
           </IonButtons>
           <IonTitle>Asking Purr-mission!</IonTitle>
-          <IonChip slot="end" disabled>2 of 7</IonChip>
+          <IonChip slot="end" disabled>2 of 8</IonChip>
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding" id="main-content">
