@@ -42,6 +42,10 @@ const Tab3: React.FC = () => {
             <IonChip slot="start">7</IonChip>
             <IonLabel>Notifications</IonLabel>
           </IonItem>
+          <IonItem routerLink="/profile/push">
+            <IonChip slot="start">8</IonChip>
+            <IonLabel>Push</IonLabel>
+          </IonItem>
         </IonList>
       </IonContent>
     </IonPage>
