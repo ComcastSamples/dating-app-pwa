@@ -5,7 +5,7 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 import Footer from '../../components/Footer';
 
 // Update this with your VAPID Public Key from running npm run keys:
-const VAPID_PUBLIC_KEY = 'BDSSvm8uKiXgnPHw6AFVeSNjSRw7ZPrpN8YxvTr6wdNWiHwQGTP84NNAxg6ZVjICFdSmaIWdoMAqtb-CV5NN44g';
+const VAPID_PUBLIC_KEY = '';
 
 /* Utility functions. */
 // Convert a base64 string to Uint8Array.
@@ -47,11 +47,6 @@ const Notifications: React.FC = () => {
   let subscription = null;
 
   async function getSubscription() {
-    registration = await navigator.serviceWorker.getRegistration();
-    subscription = await registration.pushManager.getSubscription();
-    if (subscription && subscription.endpoint) {
-      setNotificationsSubscribed(true);
-    }
   }
   getSubscription();
 
@@ -60,33 +55,12 @@ const Notifications: React.FC = () => {
   }).catch(e => console.log(e));
 
   async function subscribeToPush() {
-    subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
-    });
-    postToServer('/add-subscription', subscription);
-    setNotificationsSubscribed(true);
   }
 
   async function unsubscribeToPush() {
-    fetch('/remove-subscription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({endpoint: subscription.endpoint})
-    });
-    const unsubscribed = await subscription.unsubscribe();
-    if (unsubscribed) {
-      console.info('Successfully unsubscribed from push notifications.');
-      setNotificationsSubscribed(false);
-    }
   }
 
   async function notifyMe() {
-    const registration = await navigator.serviceWorker.getRegistration();
-    const subscription = await registration.pushManager.getSubscription();
-    postToServer('/notify-me', { endpoint: subscription.endpoint });
   }
   
 
