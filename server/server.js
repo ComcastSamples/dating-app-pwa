@@ -1,8 +1,14 @@
+/*
+* Welcome to the Push Notification server portion. Instructions:
+* https://web.dev/articles/push-notifications-server-codelab#manage
+*/
+
 import express from 'express';
 import webpush from 'web-push';
 import bodyparser from 'body-parser';
 import { LowSync } from 'lowdb';
 import { JSONFileSync } from 'lowdb/node';
+import cors from 'cors';
 
 // https://github.com/typicode/lowdb#usage
 import { join, dirname } from 'node:path'
@@ -53,6 +59,7 @@ function sendNotifications(subscriptions) {
 const app = express();
 app.use(bodyparser.json());
 app.use(express.static(join(__dirname, 'static')));
+app.use(cors());
 
 app.post('/add-subscription', (request, response) => {
   console.log(`Subscribing ${request.body.endpoint}`);
@@ -95,7 +102,7 @@ app.post('/notify-all', (request, response) => {
 app.listen(3001, () => {
   console.log(`Your Push Notifications Server is up and running 🚀
 
-The original Codelab instructions are available at 
+The original Codelab instructions are available at
 https://web.dev/articles/push-notifications-server-codelab
 https://codelabs.developers.google.com/codelabs/push-notifications
 
