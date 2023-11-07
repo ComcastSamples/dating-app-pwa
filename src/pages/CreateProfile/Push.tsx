@@ -5,7 +5,7 @@ import { IonHeader, IonButton, IonContent, IonButtons,
 import Footer from '../../components/Footer';
 
 // Update this with your VAPID Public Key from running npm run keys:
-const VAPID_PUBLIC_KEY = 'BDSSvm8uKiXgnPHw6AFVeSNjSRw7ZPrpN8YxvTr6wdNWiHwQGTP84NNAxg6ZVjICFdSmaIWdoMAqtb-CV5NN44g';
+const VAPID_PUBLIC_KEY = 'BKIT91vGGICRYmt4fEahDGKM7QHzfMtS0LZnkVeAiEm0fVgE-pt9GL0QdVr68OfQXWO6KIUn_QDalo2STvXq5Ec';
 
 /* Utility functions. */
 // Convert a base64 string to Uint8Array.
@@ -64,12 +64,12 @@ const Notifications: React.FC = () => {
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(VAPID_PUBLIC_KEY)
     });
-    postToServer('/add-subscription', subscription);
+    postToServer('http://localhost:3001/add-subscription', subscription);
     setNotificationsSubscribed(true);
   }
 
   async function unsubscribeToPush() {
-    fetch('/remove-subscription', {
+    fetch('http://localhost:3001/remove-subscription', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -86,9 +86,9 @@ const Notifications: React.FC = () => {
   async function notifyMe() {
     const registration = await navigator.serviceWorker.getRegistration();
     const subscription = await registration.pushManager.getSubscription();
-    postToServer('/notify-me', { endpoint: subscription.endpoint });
+    postToServer('http://localhost:3001/notify-me', { endpoint: subscription.endpoint });
   }
-  
+
 
   return (
     <IonPage>
