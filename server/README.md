@@ -19,13 +19,25 @@ From the _root_ (not this folder) of this repo:
     npm i
     ```
 
-2. Start the server:
+2. Generate the VAPID keys you need for notifications:
+
+    ```
+    npm run keys
+    ```
+
+3. Start the server:
 
     ```
     npm run start:server
     ```
 
-This should start up a server at http://localhost:3001/ and there is a proxy in place for requests to hit the server automatically.
+This should start up a push notifications server at http://localhost:3001/ with CORS headers.
+
+Instructions for writing the code for the push notifications server are at https://web.dev/articles/push-notifications-server-codelab#manage (just ignore the Glitch parts).
+
+Use http://localhost:3001/ as an initial testing ground to get notifications appearing on http://localhost:3001/.
+
+One you have that working, take a look at the code in `server/static/push.js` and use that to complete the `subscribeToPush()`, `unsubscribeToPush()`, and `notifyMe()` functions in `src/pages/CreateProfile/Push.tsx` to display notifications from http://localhost:3000/. Be sure to configure those functions to hit the appropriate endpoints at http://localhost:3001/.
 
 ### License Info
 

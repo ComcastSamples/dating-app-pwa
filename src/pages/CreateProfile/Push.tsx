@@ -47,6 +47,11 @@ const Notifications: React.FC = () => {
   let subscription = null;
 
   async function getSubscription() {
+    registration = await navigator.serviceWorker.getRegistration();
+    subscription = await registration.pushManager.getSubscription();
+    if (subscription && subscription.endpoint) {
+      setNotificationsSubscribed(true);
+    }
   }
   getSubscription();
 
@@ -55,14 +60,17 @@ const Notifications: React.FC = () => {
   }).catch(e => console.log(e));
 
   async function subscribeToPush() {
+    // write this based on server/static/push.js
   }
 
   async function unsubscribeToPush() {
+    // write this based on server/static/push.js
   }
 
   async function notifyMe() {
+    // write this based on server/static/push.js
   }
-  
+
 
   return (
     <IonPage>
