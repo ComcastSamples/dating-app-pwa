@@ -91,7 +91,7 @@ const Notifications: React.FC = () => {
 
         <p>
           Let's connect to our local server and send push notifications to our users.
-          Open server/server.js to get started.
+          Open server/README.md to get started.
         </p>
 
         <IonButton onClick={enableNotifications} disabled={notificationsEnabled}>{
